@@ -1,0 +1,22 @@
+_|_|_
+_|_|_
+_|_|_
+
+X|_|_
+_|X|_
+O|_|_
+
+class TicTac
+
+  def new_game
+    gameController = GameController.new()
+  end
+end
+
+
+class Board 
+  attr_accessor :board
+  def initialize
+    @board = [['_','_','_'],['_','_','_'],['_','_','_']]
+  end
+end
