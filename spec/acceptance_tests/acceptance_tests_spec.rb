@@ -8,5 +8,13 @@ describe "Game initiation" do
             expect {game.show_board}.to output(grid).to_stdout
         end
     end
+    context "players starts a game but decides to end game" do
+        xit "leaves the game loop" do
+            game = TicTacToe.new
+            game.get_input
+            expect(game).to eq(nil) 
+        end
+    end
+
 end
 
