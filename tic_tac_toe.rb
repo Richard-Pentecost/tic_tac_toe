@@ -1,10 +1,17 @@
+require_relative 'game_controller'
+
 class TicTacToe
+    attr_accessor :controller
+    def initialize
+        @controller = GameController.new
+    end
+
     def show_board
         puts "_|_|_\n_|_|_\n_|_|_"
     end
 
-    def get_input
-       puts "Please enter a valid move: "
-       input = gets
-    end
+    # def get_input
+    #    puts "Please enter a valid move: "
+    #    input = gets
+    # end
 end

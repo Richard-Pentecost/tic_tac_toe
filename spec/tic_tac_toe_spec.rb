@@ -1,5 +1,5 @@
-# require_relative "../tic_tac_toe.rb"
-
+require_relative "../tic_tac_toe.rb"
+require_relative "../game_controller"
 # describe TicTacToe do
 #     # context "show_board" do
 #     #     it "displays an empty board" do
@@ -19,3 +19,20 @@
 #     #     end
 #     # end
 # end
+
+describe TicTacToe do
+  context "TicTacToe initialization" do
+    it "creates a game controller" do
+      game = TicTacToe.new
+      expect(game.controller.class).to be(GameController)
+    end
+  end
+
+  context "show_board" do
+    it "shows the current board" do
+        game = described_class.new
+        grid = "_|_|_\n_|_|_\n_|_|_\n"
+        expect {game.show_board}.to output(grid).to_stdout
+    end
+  end
+end
