@@ -2,20 +2,30 @@ require_relative "../tic_tac_toe.rb"
 
 describe TicTacToe do
     before(:each) do
-        game_controller = { get_boardstate: "_|_|_\n_|_|_\n_|_|_\n" }
+        game_controller = 'game controller'
         @game = described_class.new(game_controller)
     end
 
     context "TicTacToe initialization" do
         it "initializes a game controller" do
-            expect(@game.controller).to eq({ get_boardstate: "_|_|_\n_|_|_\n_|_|_\n" })
+            expect(@game.controller).to eq('game controller')
         end
     end
 
     context "show_board" do
-        it "shows the current board" do
+
+        it "shows the empty board" do
             grid = "_|_|_\n_|_|_\n_|_|_\n"
+            # allow(@game).to receive(:get_boardstate).and_return([['_','_','_'],['_','_','_'],['_','_','_']])
             expect {@game.show_board}.to output(grid).to_stdout
+        end
+
+        xit "shows the board after a player has made a move" do
+            grid = "X|_|_\n_|_|_\n_|_|_\n"
+            game_controller = { board: { board: [['X','_','_'],['_','_','_'],['_','_','_']] }}
+            game = described_class.new(game_controller)
+            game_controller[board[board]]
+            expect {game.show_board}.to output(grid).to_stdout
         end
     end
 

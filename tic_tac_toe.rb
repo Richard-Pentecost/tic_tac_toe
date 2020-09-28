@@ -7,6 +7,8 @@ class TicTacToe
 
     def show_board
         puts "_|_|_\n_|_|_\n_|_|_"
+        # board = @controller.get_boardstate
+        # puts board.join(',')
     end
 
     def get_input
