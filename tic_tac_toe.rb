@@ -1,5 +1,3 @@
-require_relative 'game_controller'
-
 class TicTacToe
     attr_accessor :controller
     def initialize(game_controller)
