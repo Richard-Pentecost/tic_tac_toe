@@ -6,9 +6,10 @@ class TicTacToe
     end
 
     def show_board
-        # puts "_|_|_\n_|_|_\n_|_|_"
         board = @controller.get_boardstate
-        puts board
+        list = []
+        board.each { |row| list << row.join("|") }
+        puts list
     end
 
     def get_input
