@@ -29,6 +29,12 @@ describe TicTacToe do
             value = allow(@game).to receive(:gets).and_return('hello')
             expect(@game.get_input).to eq('hello')
         end
+
+        it "sets game over to true if the user inputs quit" do
+            value = allow(@game).to receive(:gets).and_return('quit')
+            @game.get_input
+            expect(@game.game_over).to eq(true)
+        end
     end
 end
 
