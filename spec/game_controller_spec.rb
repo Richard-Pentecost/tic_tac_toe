@@ -8,11 +8,11 @@ describe GameController do
         end
     end
 
-    context "player_move" do
+    context "move" do
         let(:board) { spy("board") }
         it "instructs board to add a move" do
             game_controller = GameController.new(board)
-            game_controller.player_move(0,1)
+            game_controller.move(0,1)
             expect(game_controller.board).to have_received(:add_move).with(0, 1, "X")
         end
     end

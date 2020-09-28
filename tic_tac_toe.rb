@@ -15,4 +15,9 @@ class TicTacToe
         @game_over = true if input == 'quit'
         input
     end
+
+    def player_move
+        input = get_input
+        @controller.move(0,0)
+    end
 end

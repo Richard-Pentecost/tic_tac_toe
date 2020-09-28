@@ -4,7 +4,7 @@ class GameController
         @board = board
     end
 
-    def player_move(x, y) 
+    def move(x, y) 
         @board.add_move(x, y, "X")
     end
 end

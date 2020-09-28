@@ -36,6 +36,16 @@ describe TicTacToe do
             expect(@game.game_over).to eq(true)
         end
     end
+
+    context "player_move" do
+        let(:game_controller) { spy("game_controller") }
+        it "passed the player input to the game controller move method" do
+            game = described_class.new(game_controller)
+            allow(game).to receive(:gets).and_return('A1')
+            game.player_move
+            expect(game.controller).to have_received(:move).with(0,0)            
+        end
+    end
 end
 
 
