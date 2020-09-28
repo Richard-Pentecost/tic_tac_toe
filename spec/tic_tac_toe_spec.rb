@@ -58,6 +58,15 @@ describe TicTacToe do
             expect(game.controller).to have_received(:move).with(0,0)            
         end
     end
+
+    context "computer_move" do
+        let(:game_controller) { spy("game_controller") }
+        it "calls method in game_controller for computer to make move" do
+            game = described_class.new(game_controller)
+            game.computer_move
+            expect(game.controller).to have_received(:run_ai)            
+        end
+    end
 end
 
 

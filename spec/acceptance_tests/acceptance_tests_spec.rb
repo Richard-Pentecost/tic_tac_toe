@@ -32,5 +32,15 @@ describe "Game initiation" do
             expect {@game.show_board}.to output(grid).to_stdout
         end
     end
+
+    context "computer makes a move" do
+        xit "updates a board and shows it" do
+            allow(@game).to receive(:gets).and_return('A1')
+            @game.player_move
+            @game.computer_move
+            grid = "X|O|_\n_|_|_\n_|_|_\n"
+            expect {@game.show_board}.to output(grid).to_stdout
+        end
+    end
 end
 

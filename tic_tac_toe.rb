@@ -23,4 +23,8 @@ class TicTacToe
         input = get_input
         @controller.move(0,0)
     end
+
+    def computer_move
+        @controller.run_ai
+    end
 end
