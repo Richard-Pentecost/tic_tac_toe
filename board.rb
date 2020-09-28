@@ -5,6 +5,6 @@ class Board
   end
 
   def add_move(x, y, symbol)
-    @board = [['X','_','_'],['_','_','_'],['_','_','_']]
+    @board[y][x] = symbol
   end
 end
