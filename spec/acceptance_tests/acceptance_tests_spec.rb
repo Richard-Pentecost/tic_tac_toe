@@ -13,9 +13,10 @@ describe "Game initiation" do
         end
     end
     context "players starts a game but decides to end game" do
-        xit "leaves the game loop" do
+        it "sets the game_over flag to true" do
+            value = allow(@game).to receive(:gets).and_return('quit')
             @game.get_input
-            expect(@game).to eq(nil) 
+            expect(@game.game_over).to eq(true)
         end
     end
 
