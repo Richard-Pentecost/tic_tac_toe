@@ -1,38 +1,33 @@
 require_relative '../../tic_tac_toe.rb'
+require_relative '../../board.rb'
+require_relative '../../game_controller.rb'
 
 describe "Game initiation" do
-    let(:game_controller) {double('game controller')}
     before(:each) do
+        board = Board.new
+        game_controller = GameController.new(board)
         @game = TicTacToe.new(game_controller)
     end
-    # let(:gc) {double('game controller')}
 
-    # it "shows the empty board" do
-    #     allow(gc).to receive(:get_boardstate).and_return([['_','_','_'],['_','_','_'],['_','_','_']])
-    #     game = described_class.new(gc)
-    #     grid = "_|_|_\n_|_|_\n_|_|_\n"
-    #     expect {@game.show_board}.to output(grid).to_stdout
-    # end
     context "player starts game" do
         it "displays an empty board" do
             grid = "_|_|_\n_|_|_\n_|_|_\n"
-            allow(game_controller).to receive(:get_boardstate).and_return([['_','_','_'],['_','_','_'],['_','_','_']])
             expect {@game.show_board}.to output(grid).to_stdout
         end
     end
 
     context "players starts a game but decides to end game" do
         it "sets the game_over flag to true" do
-            value = allow(@game).to receive(:gets).and_return('quit')
+            allow(@game).to receive(:gets).and_return('quit')
             @game.get_input
             expect(@game.game_over).to eq(true)
         end
     end
 
     context "player makes a move" do
-        xit "updates the board and shows it" do
-            value = allow(@game).to receive(:gets).and_return('A1')
-            @game.get_input
+        it "updates the board and shows it" do
+            allow(@game).to receive(:gets).and_return('A1')
+            @game.player_move
             grid = "X|_|_\n_|_|_\n_|_|_\n"
             expect {@game.show_board}.to output(grid).to_stdout
         end
