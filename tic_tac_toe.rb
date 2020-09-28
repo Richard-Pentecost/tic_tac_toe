@@ -2,8 +2,8 @@ require_relative 'game_controller'
 
 class TicTacToe
     attr_accessor :controller
-    def initialize
-        @controller = GameController.new
+    def initialize(game_controller)
+        @controller = game_controller
     end
 
     def show_board
