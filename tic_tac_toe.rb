@@ -16,14 +16,3 @@ class TicTacToe
         input
     end
 end
-
-# def newName
-#   puts 'Name please'
-#   name = gets
-#   name.chomp
-# end
-#  
-# newName
-# Name please
-# Richard
-# => "Richard"

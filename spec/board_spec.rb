@@ -6,4 +6,12 @@ describe Board do
       expect(described_class.new.board).to eq([['_','_','_'],['_','_','_'],['_','_','_']])
     end
   end
+
+  context "add move" do
+    it "updates the state of the board to reflect the move" do
+      board = described_class.new
+      board.add_move(0,0,'X')
+      expect(board.board).to eq([['X','_','_'],['_','_','_'],['_','_','_']])
+    end
+  end
 end

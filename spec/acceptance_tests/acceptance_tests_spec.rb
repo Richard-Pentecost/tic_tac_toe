@@ -12,6 +12,7 @@ describe "Game initiation" do
             expect {@game.show_board}.to output(grid).to_stdout
         end
     end
+
     context "players starts a game but decides to end game" do
         it "sets the game_over flag to true" do
             value = allow(@game).to receive(:gets).and_return('quit')
@@ -20,5 +21,13 @@ describe "Game initiation" do
         end
     end
 
+    context "player makes a move" do
+        xit "updates the board and shows it" do
+            value = allow(@game).to receive(:gets).and_return('A1')
+            @game.get_input
+            grid = "X|_|_\n_|_|_\n_|_|_\n"
+            expect {@game.show_board}.to output(grid).to_stdout
+        end
+    end
 end
 
