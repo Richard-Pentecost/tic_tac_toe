@@ -12,19 +12,36 @@ describe TicTacToe do
         end
     end
 
-    context "show_board" do
+    # context "show_board" do
 
+    #     it "shows the empty board" do
+    #         grid = "_|_|_\n_|_|_\n_|_|_\n"
+    #         # allow(@game).to receive(:get_boardstate).and_return([['_','_','_'],['_','_','_'],['_','_','_']])
+    #         expect {@game.show_board}.to output(grid).to_stdout
+    #     end
+
+    #     xit "shows the board after a player has made a move" do
+    #         grid = "X|_|_\n_|_|_\n_|_|_\n"
+    #         game_controller = { board: { board: [['X','_','_'],['_','_','_'],['_','_','_']] }}
+    #         game = described_class.new(game_controller)
+    #         allow{game.controller}.to receive(:get_boardstate).and_return([['X','_','_'],['_','_','_'],['_','_','_']])
+    #         expect {game.show_board}.to output(grid).to_stdout
+    #     end
+    # end
+
+    context "show_board" do
+        let(:game_controller) { spy("game_controller") }
         it "shows the empty board" do
             grid = "_|_|_\n_|_|_\n_|_|_\n"
-            # allow(@game).to receive(:get_boardstate).and_return([['_','_','_'],['_','_','_'],['_','_','_']])
-            expect {@game.show_board}.to output(grid).to_stdout
+            game = described_class.new(game_controller)
+            allow(game.controller).to receive(:get_boardstate).and_return([['_','_','_'],['_','_','_'],['_','_','_']])
+            expect {game.show_board}.to output(grid).to_stdout
         end
 
         xit "shows the board after a player has made a move" do
             grid = "X|_|_\n_|_|_\n_|_|_\n"
-            game_controller = { board: { board: [['X','_','_'],['_','_','_'],['_','_','_']] }}
             game = described_class.new(game_controller)
-            game_controller[board[board]]
+            allow{game_controller}.to receive(:get_boardstate).and_return([['X','_','_'],['_','_','_'],['_','_','_']])
             expect {game.show_board}.to output(grid).to_stdout
         end
     end
