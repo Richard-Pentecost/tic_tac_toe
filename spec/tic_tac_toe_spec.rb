@@ -2,13 +2,13 @@ require_relative "../tic_tac_toe.rb"
 
 describe TicTacToe do
     before(:each) do
-        game_controller = 'game controller'
+        game_controller = { get_boardstate: "_|_|_\n_|_|_\n_|_|_\n" }
         @game = described_class.new(game_controller)
     end
 
     context "TicTacToe initialization" do
         it "initializes a game controller" do
-            expect(@game.controller).to eq('game controller')
+            expect(@game.controller).to eq({ get_boardstate: "_|_|_\n_|_|_\n_|_|_\n" })
         end
     end
 
