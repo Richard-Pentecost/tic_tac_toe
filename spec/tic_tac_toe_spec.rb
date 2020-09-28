@@ -19,20 +19,17 @@ describe TicTacToe do
 
     context "get_input" do
         it "asks the user for a move" do
-            expect { TicTacToe.new.get_input }.to output("Please enter a valid move: \n").to_stdout
+            game = TicTacToe.new
+            value = allow(game).to receive(:gets).and_return('hello')
+            expect { game.get_input }.to output("Please enter a valid move: \n").to_stdout
         end
 
         it "recieves user input" do
             game = TicTacToe.new
-            value = allow(game.get_input).to receive(:gets) { 'hello' }
-            expect(value).to eq('hello')
+            value = allow(game).to receive(:gets).and_return('hello')
+            expect(game.get_input).to eq('hello')
         end
     end
-
-    
-   
- 
-
 end
 
 
