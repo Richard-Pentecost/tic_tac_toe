@@ -36,7 +36,7 @@ describe "Game initiation" do
     end
 
     context "computer makes a move" do
-        xit "updates a board and shows it" do
+        it "updates a board and shows it" do
             allow(@game).to receive(:gets).and_return('A1')
             @game.player_move
             @game.computer_move

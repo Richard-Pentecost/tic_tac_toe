@@ -27,4 +27,15 @@ class TicTacToe
     def computer_move
         @controller.run_ai
     end
+
+    def interpret_input(coordinates)
+        if coordinates[0] == 'B'
+            return [1, 0]
+        end
+        if coordinates[0] == 'C'
+            return [2, 0]
+        end
+        return [0, 0]
+    end
+
 end

@@ -3,10 +3,14 @@ class GameController
     def initialize(board, computer)
         @board = board
         @computer = computer
+        @turn = 0
     end
 
     def move(x, y) 
-        @board.add_move(x, y, "X")
+        sym = 'X'
+        sym = 'O' if @turn.odd?
+        @turn += 1
+        @board.add_move(x, y, sym)
     end
 
     def get_boardstate
@@ -15,6 +19,6 @@ class GameController
 
     def run_ai
         coordinates = @computer.move(@board)
-        move(0,0)
+        move(coordinates[0], coordinates[1])
     end
 end

@@ -66,6 +66,18 @@ describe TicTacToe do
             expect(game.controller).to have_received(:run_ai)            
         end
     end
+
+    context "interpret input" do
+        it "takes the given coordinates and returns them as number coordinates" do
+            expect(@game.interpret_input('A1')).to eq([0, 0])
+        end
+        it "takes the given coordinates and returns them as number coordinates" do
+            expect(@game.interpret_input('B1')).to eq([1, 0])
+        end
+        it "takes the given coordinates and returns them as number coordinates" do
+            expect(@game.interpret_input('C1')).to eq([2, 0])
+        end
+    end
 end
 
 
