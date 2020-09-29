@@ -12,7 +12,6 @@ describe TicTacToe do
         end
     end
 
-
     context "show_board" do
         let(:game_controller) {double('game controller')}
 

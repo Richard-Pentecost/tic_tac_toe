@@ -1,7 +1,8 @@
 class GameController
-    attr_accessor :board
-    def initialize(board)
+    attr_accessor :board, :computer
+    def initialize(board, computer)
         @board = board
+        @computer = computer
     end
 
     def move(x, y) 

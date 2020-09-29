@@ -1,11 +1,13 @@
 require_relative '../../tic_tac_toe.rb'
 require_relative '../../board.rb'
 require_relative '../../game_controller.rb'
+require_relative '../../computer.rb'
 
 describe "Game initiation" do
     before(:each) do
         board = Board.new
-        game_controller = GameController.new(board)
+        computer = Computer.new
+        game_controller = GameController.new(board, computer)
         @game = TicTacToe.new(game_controller)
     end
 
