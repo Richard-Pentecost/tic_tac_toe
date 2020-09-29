@@ -29,13 +29,8 @@ class TicTacToe
     end
 
     def interpret_input(coordinates)
-        if coordinates[0] == 'B'
-            return [1, 0]
-        end
-        if coordinates[0] == 'C'
-            return [2, 0]
-        end
-        return [0, 0]
+        letter_coords = { 'A' => 0, 'B' => 1, 'C' => 2}
+        return [letter_coords[coordinates[0]], coordinates[1].to_i - 1]
     end
 
 end
