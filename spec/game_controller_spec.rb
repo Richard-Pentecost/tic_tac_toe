@@ -32,6 +32,16 @@ describe GameController do
         end
     end
 
+    context "cell_empty?" do
+        let(:board) {spy("board")}
+        it "returns true if cell is empty" do
+            computer = 'computer'
+            allow(board).to receive(:board).and_return([['_','_','_'],['_','_','_'],['_','_','_']])
+            game_controller = GameController.new(board, computer)
+            expect(game_controller.cell_empty?(0,0)).to eq(true)
+        end
+    end
+
     context "run_ai" do
         let(:computer) { spy("computer") }
         let(:board) {spy("board")}

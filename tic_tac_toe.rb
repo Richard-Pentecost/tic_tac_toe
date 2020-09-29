@@ -21,7 +21,8 @@ class TicTacToe
 
     def player_move
         input = get_input
-        @controller.move(0,0)
+        coordinate_array = interpret_input(input)
+        @controller.move(coordinate_array[0],coordinate_array[1])
     end
 
     def computer_move
