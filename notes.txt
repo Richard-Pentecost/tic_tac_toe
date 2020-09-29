@@ -1,3 +1,9 @@
+Next step:
+Player move in tic tac toe is still slimed
+We need to add checks that player input is a valid grid reference
+We need to add checks that the player move is to a blank reference (i.e.no previous goes there)
+We need to implement minimax as a strategy alternative to the "basic" computer
+
 Assumptions
 -Human player always goes first
 -The computer is non-optimal (for now); it will move in the next available space
