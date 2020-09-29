@@ -23,6 +23,11 @@ class GameController
     end
 
     def cell_empty?(column, row)
-        true
+        current_board = get_boardstate
+        if current_board[row][column] == "_"
+            return true
+        end
+        return false
     end
+
 end

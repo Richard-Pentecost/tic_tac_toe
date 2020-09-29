@@ -40,6 +40,12 @@ describe GameController do
             game_controller = GameController.new(board, computer)
             expect(game_controller.cell_empty?(0,0)).to eq(true)
         end
+        it "returns false if cell is full" do
+            computer = 'computer'
+            allow(board).to receive(:board).and_return([['X','_','_'],['_','_','_'],['_','_','_']])
+            game_controller = GameController.new(board, computer)
+            expect(game_controller.cell_empty?(0,0)).to eq(false)
+        end
     end
 
     context "run_ai" do
