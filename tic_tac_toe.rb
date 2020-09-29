@@ -3,6 +3,7 @@ class TicTacToe
     def initialize(game_controller)
         @controller = game_controller
         @game_over = false
+        @grid_references = ['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3']
     end
 
     def show_board
@@ -14,22 +15,35 @@ class TicTacToe
 
     def get_input
         puts "Please enter a valid move: "
-        input = gets.chomp
-        @game_over = true if input == 'quit'
-        input
+        gets.chomp
+    end
+
+    def quit_game
+        @game_over = true
     end
 
     def player_move
         input = get_input
-        coordinate_array = interpret_input(input)
-        
-        valid_move = @controller.cell_empty?(coordinate_array[0], coordinate_array[1])
-        
-        if valid_move
-            @controller.move(coordinate_array[0],coordinate_array[1])
+
+        if input == 'quit' 
+            quit_game
             return
         end
-        puts 'Cannot place move here'
+
+        message = 'Invalid input'
+
+        if valid_grid_reference?(input)
+            coordinate_array = interpret_input(input)
+            
+            valid_move = @controller.cell_empty?(coordinate_array[0], coordinate_array[1])
+            
+            if valid_move
+                @controller.move(coordinate_array[0],coordinate_array[1])
+                return
+            end
+            message = 'Cannot place move here'
+        end
+        puts message
         player_move
     end
 
@@ -42,4 +56,7 @@ class TicTacToe
         return [letter_coords[coordinates[0]], coordinates[1].to_i - 1]
     end
 
+    def valid_grid_reference?(grid_reference)
+        @grid_references.include? (grid_reference)
+    end
 end

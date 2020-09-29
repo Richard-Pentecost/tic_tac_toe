@@ -40,13 +40,16 @@ describe TicTacToe do
             value = allow(@game).to receive(:gets).and_return('hello')
             expect(@game.get_input).to eq('hello')
         end
+       
+    end
 
+    context 'quit_game' do
         it "sets game over to true if the user inputs quit" do
-            value = allow(@game).to receive(:gets).and_return('quit')
-            @game.get_input
+            @game.quit_game
             expect(@game.game_over).to eq(true)
         end
     end
+
 
     context "player_move" do
         let(:game_controller) { spy("game_controller") }
@@ -72,6 +75,13 @@ describe TicTacToe do
             message = "Please enter a valid move: \nCannot place move here\nPlease enter a valid move: \n"
             expect {game.player_move}.to output(message).to_stdout           
         end
+
+        it "asks player for another input if the input is invalid" do
+            game = described_class.new(game_controller)
+            allow(game).to receive(:gets).and_return('D4', 'A1')
+            message = "Please enter a valid move: \nInvalid input\nPlease enter a valid move: \n"
+            expect {game.player_move}.to output(message).to_stdout   
+        end
     end
 
     context "computer_move" do
@@ -92,6 +102,20 @@ describe TicTacToe do
         end
         it "takes the given coordinates and returns them as number coordinates" do
             expect(@game.interpret_input('C1')).to eq([2, 0])
+        end
+    end
+
+    context 'valid_grid_referecnce?' do
+        it 'returns true if the input is valid' do
+            expect(@game.valid_grid_reference?('A1')).to eq(true)
+        end
+
+        it 'returns false if the input invalid' do
+            expect(@game.valid_grid_reference?('hello')).to eq(false)
+        end
+
+        it 'returns false if the input invalid' do
+            expect(@game.valid_grid_reference?('D4')).to eq(false)
         end
     end
 end

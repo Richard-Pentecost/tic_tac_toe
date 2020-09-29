@@ -21,7 +21,7 @@ describe "Game initiation" do
     context "players starts a game but decides to end game" do
         it "sets the game_over flag to true" do
             allow(@game).to receive(:gets).and_return('quit')
-            @game.get_input
+            @game.player_move
             expect(@game.game_over).to eq(true)
         end
     end
@@ -52,6 +52,16 @@ describe "Game initiation" do
             message = "Please enter a valid move: \nCannot place move here\nPlease enter a valid move: \n"
             expect{@game.player_move}.to output(message).to_stdout
             grid = "X|_|_\nO|_|_\n_|_|_\n"
+            expect {@game.show_board}.to output(grid).to_stdout
+        end
+    end
+
+    context "player enters invalid input" do
+        it "prompts player until they make a valid move" do
+            allow(@game).to receive(:gets).and_return('D4', 'A1')
+            message = "Please enter a valid move: \nInvalid input\nPlease enter a valid move: \n"
+            expect{@game.player_move}.to output(message).to_stdout
+            grid = "X|_|_\n_|_|_\n_|_|_\n"
             expect {@game.show_board}.to output(grid).to_stdout
         end
     end
