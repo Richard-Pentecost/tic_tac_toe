@@ -12,4 +12,8 @@ class GameController
     def get_boardstate
         @board.board
     end
+
+    def run_ai
+        @computer.move(@board)
+    end
 end
