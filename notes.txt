@@ -1,12 +1,14 @@
 Next step:
-We need to add checks that player input is a valid grid reference
-We need to add checks that the player move is to a blank reference (i.e.no previous goes there)
 Need to check for a winning move
 Need to check for a game that is a draw
 We need to implement minimax as a strategy alternative to the "basic" computer
+Update board presentation, to improve user experience 
+Refactor code
 
 Completed
 Player move in tic tac toe is still slimed
+We need to add checks that player input is a valid grid reference
+We need to add checks that the player move is to a blank reference (i.e.no previous goes there)
 
 Assumptions
 -Human player always goes first
