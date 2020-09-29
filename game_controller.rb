@@ -14,6 +14,7 @@ class GameController
     end
 
     def run_ai
-        @computer.move(@board)
+        coordinates = @computer.move(@board)
+        move(0,0)
     end
 end

@@ -26,11 +26,21 @@ describe GameController do
 
     context "run_ai" do
         let(:computer) { spy("computer") }
+        let(:board) {spy("board")}
         it "calls the move method in the computer class" do
-            board = "board"
             game_controller =  described_class.new(board, computer)
+            allow(game_controller.computer).to receive(:move).and_return([0,0])
+            allow(game_controller).to receive(:move).and_return(nil)
             game_controller.run_ai
             expect(game_controller.computer).to have_received(:move).with(board)
+        end
+
+        it "calls the game controller move with new coordinates" do
+            game_controller =  described_class.new(board, computer)
+            allow(game_controller.computer).to receive(:move).and_return([0,0])
+            allow(game_controller).to receive(:move).and_return(nil)
+            game_controller.run_ai
+            expect(game_controller).to have_received(:move).with(0,0)
         end
     end
 end
