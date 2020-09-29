@@ -46,12 +46,12 @@ describe "Game initiation" do
     end
 
     context "player tries to make a play in occupied cell" do
-        xit "prompts player until they make a valid move" do
+        it "prompts player until they make a valid move" do
             allow(@game).to receive(:gets).and_return('A1', 'A1', 'A2')
             @game.player_move
-            message = 'Cannot place move here, please input a new position'
-            expect(@game.player_move).to output(message).to_stdout
-            grid = "X|_|_\nX|_|_\n_|_|_\n"
+            message = "Please enter a valid move: \nCannot place move here\nPlease enter a valid move: \n"
+            expect{@game.player_move}.to output(message).to_stdout
+            grid = "X|_|_\nO|_|_\n_|_|_\n"
             expect {@game.show_board}.to output(grid).to_stdout
         end
     end

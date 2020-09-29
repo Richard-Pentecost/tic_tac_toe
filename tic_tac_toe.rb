@@ -22,7 +22,15 @@ class TicTacToe
     def player_move
         input = get_input
         coordinate_array = interpret_input(input)
-        @controller.move(coordinate_array[0],coordinate_array[1])
+        
+        valid_move = @controller.cell_empty?(coordinate_array[0], coordinate_array[1])
+        
+        if valid_move
+            @controller.move(coordinate_array[0],coordinate_array[1])
+            return
+        end
+        puts 'Cannot place move here'
+        player_move
     end
 
     def computer_move

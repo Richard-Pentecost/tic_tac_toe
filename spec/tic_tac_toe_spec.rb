@@ -63,6 +63,15 @@ describe TicTacToe do
             game.player_move
             expect(game.controller).to have_received(:move).with(1,0)            
         end
+
+        it "asks player to replay move if original move position is taken" do
+            game = described_class.new(game_controller)
+            allow(game.controller).to receive(:cell_empty?).with(1,0).and_return(false)
+            allow(game.controller).to receive(:cell_empty?).with(0,0).and_return(true)
+            allow(game).to receive(:gets).and_return('B1', 'A1')
+            message = "Please enter a valid move: \nCannot place move here\nPlease enter a valid move: \n"
+            expect {game.player_move}.to output(message).to_stdout           
+        end
     end
 
     context "computer_move" do
