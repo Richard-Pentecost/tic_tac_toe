@@ -22,6 +22,7 @@ class TicTacToe
         @game_over = true
     end
 
+
     def player_move
         input = get_input
 
@@ -58,5 +59,13 @@ class TicTacToe
 
     def valid_grid_reference?(grid_reference)
         @grid_references.include? (grid_reference)
+    end
+
+    def end_game_if_over 
+        game_status = @controller.get_game_status
+        if game_status != 'pending'
+            puts 'Game is drawn, there are no more moves!'
+            quit_game
+        end
     end
 end

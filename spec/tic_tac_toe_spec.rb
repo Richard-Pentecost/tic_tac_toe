@@ -118,6 +118,30 @@ describe TicTacToe do
             expect(@game.valid_grid_reference?('D4')).to eq(false)
         end
     end
+
+    context 'end_game_if_over' do
+        let(:game_controller) { double("game_controller") }
+        it "doesn't end game when game state is pending" do
+            allow(game_controller).to receive(:get_game_status).and_return("pending")
+            game = described_class.new(game_controller)
+            game.end_game_if_over
+            expect(game.game_over).to eq(false)
+        end
+
+        it 'set @game_over to true if game is drawn' do
+            allow(game_controller).to receive(:get_game_status).and_return("drawn")
+            game = described_class.new(game_controller)
+            game.end_game_if_over
+            expect(game.game_over).to eq(true)
+        end
+
+        it 'Prints drawn game message when game is drawn' do
+            allow(game_controller).to receive(:get_game_status).and_return("drawn")
+            game = described_class.new(game_controller)
+            message = "Game is drawn, there are no more moves!\n"
+            expect {game.end_game_if_over}.to output(message).to_stdout  
+        end
+    end
 end
 
 

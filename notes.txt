@@ -1,6 +1,6 @@
 Next step:
-Need to check for a winning move
 Need to check for a game that is a draw
+Need to check for a winning move
 We need to implement minimax as a strategy alternative to the "basic" computer
 Update board presentation, to improve user experience 
 Refactor code
