@@ -1,6 +1,8 @@
 Next step:
 Need to check for a game that is a draw
 Need to check for a winning move
+Add helper function to acceptance tests
+Add user instructions
 We need to implement minimax as a strategy alternative to the "basic" computer
 Update board presentation, to improve user experience 
 Refactor code

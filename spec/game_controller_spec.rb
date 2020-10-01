@@ -33,7 +33,7 @@ describe GameController do
     end
 
     context "cell_empty?" do
-        let(:board) {spy("board")}
+        let(:board) { spy("board") }
         it "returns true if cell is empty" do
             computer = 'computer'
             allow(board).to receive(:board).and_return([['_','_','_'],['_','_','_'],['_','_','_']])
@@ -50,7 +50,7 @@ describe GameController do
 
     context "run_ai" do
         let(:computer) { spy("computer") }
-        let(:board) {spy("board")}
+        let(:board) { spy("board") }
         it "calls the move method in the computer class" do
             game_controller =  described_class.new(board, computer)
             allow(game_controller.computer).to receive(:move).and_return([0,0])
@@ -73,6 +73,23 @@ describe GameController do
             allow(game_controller).to receive(:move).and_return(nil)
             game_controller.run_ai
             expect(game_controller).to have_received(:move).with(1,0)
+        end
+    end
+
+    context "get_game_status" do
+        let(:board) {double("board")}
+        it "returns pending if the board is not won or drawn" do
+            allow(board).to receive(:board).and_return([['_','_','_'],['_','_','_'],['_','_','_']])
+            computer = "computer"
+            game_controller =  described_class.new(board, computer)
+            expect(game_controller.get_game_status).to eq("pending")
+        end
+
+        it "returns drawn if the board is a draw" do
+            allow(board).to receive(:board).and_return([['O','X','O'],['X','X','O'],['X','O','X']])
+            computer = "computer"
+            game_controller =  described_class.new(board, computer)
+            expect(game_controller.get_game_status).to eq("drawn")
         end
     end
 end

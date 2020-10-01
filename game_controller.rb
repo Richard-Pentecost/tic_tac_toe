@@ -30,4 +30,12 @@ class GameController
         return false
     end
 
+    def get_game_status
+        current_board = get_boardstate
+        if current_board.flatten.include?('_')
+            return 'pending'
+        end
+        "drawn"
+    end
+
 end
