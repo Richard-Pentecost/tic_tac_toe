@@ -17,6 +17,8 @@ game_over = tic_tac_toe.game_over
 while game_over == false
     tic_tac_toe.show_board
     tic_tac_toe.player_move
+    tic_tac_toe.end_game_if_over
+    break if tic_tac_toe.game_over
     tic_tac_toe.computer_move
 
     game_over = tic_tac_toe.game_over

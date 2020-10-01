@@ -67,7 +67,7 @@ describe "Game initiation" do
     end
 
     context 'there are no more available positions on the board' do
-        xit 'ends the game with a message saying the game is drawn' do
+        it 'ends the game with a message saying the game is drawn' do
             allow(@game).to receive(:gets).and_return('B2', 'B1', 'A2', 'A3', 'C3')
             @game.player_move
             @game.computer_move
@@ -78,7 +78,7 @@ describe "Game initiation" do
             @game.player_move
             @game.computer_move
             @game.player_move
-            message = 'Game is drawn, there are no more moves!'
+            message = "Game is drawn, there are no more moves!\n"
             expect { @game.end_game_if_over }.to output(message).to_stdout
             expect(@game.game_over).to eq(true)
             
