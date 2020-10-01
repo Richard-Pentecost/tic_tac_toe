@@ -1,5 +1,4 @@
 Next step:
-Need to check for a game that is a draw
 Need to check for a winning move
 Add helper function to acceptance tests
 Add user instructions
@@ -8,6 +7,7 @@ Update board presentation, to improve user experience
 Refactor code
 
 Completed
+Need to check for a game that is a draw
 Player move in tic tac toe is still slimed
 We need to add checks that player input is a valid grid reference
 We need to add checks that the player move is to a blank reference (i.e.no previous goes there)

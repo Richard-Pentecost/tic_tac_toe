@@ -80,8 +80,21 @@ describe "Game initiation" do
             @game.player_move
             message = "Game is drawn, there are no more moves!\n"
             expect { @game.end_game_if_over }.to output(message).to_stdout
-            expect(@game.game_over).to eq(true)
-            
+            expect(@game.game_over).to eq(true)  
+        end
+    end
+
+    context "A line of of 3 X's" do
+        xit 'ends the game with a message saying the player has won' do
+            allow(@game).to receive(:gets).and_return('A1', 'A2', 'A3',)
+            @game.player_move
+            @game.computer_move
+            @game.player_move
+            @game.computer_move
+            @game.player_move
+            message = "CONGRATULATIONS!!! You beat our very advance AI!!\n"
+            expect { @game.end_game_if_over }.to output(message).to_stdout
+            expect(@game.game_over).to eq(true)  
         end
     end
 end
