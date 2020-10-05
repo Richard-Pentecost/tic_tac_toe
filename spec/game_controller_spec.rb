@@ -91,6 +91,20 @@ describe GameController do
             game_controller =  described_class.new(board, computer)
             expect(game_controller.get_game_status).to eq("drawn")
         end
+
+        it "returns X won if the board is won by X" do
+            allow(board).to receive(:board).and_return([['X','_','O'],['X','X','O'],['X','O','X']])
+            computer = "computer"
+            game_controller =  described_class.new(board, computer)
+            expect(game_controller.get_game_status).to eq("X won")
+        end
+
+        it "returns O won if the board is won by O" do
+            allow(board).to receive(:board).and_return([['X','O','O'],['X','O','X'],['O','O','X']])
+            computer = "computer"
+            game_controller =  described_class.new(board, computer)
+            expect(game_controller.get_game_status).to eq("O won")
+        end
     end
 
     context "three_in_a_line?" do
