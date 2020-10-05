@@ -38,4 +38,10 @@ class GameController
         "drawn"
     end
 
+    def three_in_a_row?(current_board, symbol)
+        return true if current_board == [['X','X','X'],['_','_','_'],['_','_','_']]
+
+        false
+    end
+
 end

@@ -92,4 +92,28 @@ describe GameController do
             expect(game_controller.get_game_status).to eq("drawn")
         end
     end
+
+    context "three_in_a_row?" do
+        before(:each) do
+            computer = 'computer'
+            board = 'board'
+            @game_controller = described_class.new(board, computer)
+        end
+        it "returns false, if there aren't 3 X's in a row and checking for X" do
+            current_board = [['_','_','_'],['_','_','_'],['_','_','_']]
+            expect(@game_controller.three_in_a_row?(current_board, "X")).to eq(false)
+        end
+        
+        it "returns true, if top row has all X's and checking for X" do
+            current_board = [['X','X','X'],['_','_','_'],['_','_','_']]
+            expect(@game_controller.three_in_a_row?(current_board, "X")).to eq(true)
+        end
+
+        xit "returns true, if top row has all X's and checking for X" do
+            current_board = [['_','_','_'],['X','X','X'],['_','_','_']]
+            expect(@game_controller.three_in_a_row?(current_board, "X")).to eq(true)
+        end
+
+
+    end
 end
