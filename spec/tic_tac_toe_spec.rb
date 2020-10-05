@@ -12,6 +12,21 @@ describe TicTacToe do
         end
     end
 
+    context "introduce_game" do
+        
+        it "displays the instructions" do
+            instructions = "Welcome to Tic Tac Toe.\n"\
+                            "INSTRUCTIONS:\n"\
+                            "To win the game, get three in a line.\n"\
+                            "To quit the game, type 'quit'.\n"\
+                            "To make a move give a grid reference.\n"\
+                            "  A|B|C\n1 _|_|_\n2 _|_|_\n3 _|_|_\n"\
+                            "-----------------------------------------\n\n"
+            expect { @game.introduce_game }.to output(instructions).to_stdout
+        end
+
+    end
+
     context "show_board" do
         let(:game_controller) {double('game controller')}
 
@@ -19,14 +34,14 @@ describe TicTacToe do
             allow(game_controller).to receive(:get_boardstate).and_return([['_','_','_'],['_','_','_'],['_','_','_']])
             game = described_class.new(game_controller)
             grid = "_|_|_\n_|_|_\n_|_|_\n"
-            expect {game.show_board}.to output(grid).to_stdout
+            expect { game.show_board }.to output(grid).to_stdout
         end
 
         it "shows the board after a player has made a move" do
             allow(game_controller).to receive(:get_boardstate).and_return([['X','_','_'],['_','_','_'],['_','_','_']])
             game = described_class.new(game_controller)
             grid = "X|_|_\n_|_|_\n_|_|_\n"
-            expect {game.show_board}.to output(grid).to_stdout
+            expect { game.show_board }.to output(grid).to_stdout
         end
     end
 
@@ -73,7 +88,7 @@ describe TicTacToe do
             allow(game.controller).to receive(:cell_empty?).with(0,0).and_return(true)
             allow(game).to receive(:gets).and_return('B1', 'A1')
             message = "Please enter a valid move: \nCannot place move here\nPlease enter a valid move: \n"
-            expect {game.player_move}.to output(message).to_stdout           
+            expect { game.player_move }.to output(message).to_stdout           
         end
 
         it "asks player for another input if the input is invalid" do
@@ -139,7 +154,7 @@ describe TicTacToe do
             allow(game_controller).to receive(:get_game_status).and_return("drawn")
             game = described_class.new(game_controller)
             message = "Game is drawn, there are no more moves!\n"
-            expect {game.end_game_if_over}.to output(message).to_stdout  
+            expect { game.end_game_if_over }.to output(message).to_stdout  
         end
 
         it 'set @game_over to true if game is won' do
@@ -152,8 +167,15 @@ describe TicTacToe do
         it 'Prints win game message when player wins game' do
             allow(game_controller).to receive(:get_game_status).and_return("X win")
             game = described_class.new(game_controller)
-            message = "CONGRATULATIONS!!! You beat our very advance AI!!\n"
-            expect {game.end_game_if_over}.to output(message).to_stdout  
+            message = "CONGRATULATIONS!!! You beat our very advanced AI!!\n"
+            expect { game.end_game_if_over }.to output(message).to_stdout  
+        end
+
+        it 'Prints lose game message when player loses game' do
+            allow(game_controller).to receive(:get_game_status).and_return("O win")
+            game = described_class.new(game_controller)
+            message = "UNLUCKY!!! Our very advanced AI outsmarted you!!\n"
+            expect { game.end_game_if_over }.to output(message).to_stdout  
         end
     end
 end

@@ -6,6 +6,18 @@ class TicTacToe
         @grid_references = ['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3']
     end
 
+    def introduce_game
+        instructions = "Welcome to Tic Tac Toe.\n"\
+                        "INSTRUCTIONS:\n"\
+                        "To win the game, get three in a line.\n"\
+                        "To quit the game, type 'quit'.\n"\
+                        "To make a move give a grid reference.\n"\
+                        "  A|B|C\n1 _|_|_\n2 _|_|_\n3 _|_|_\n"\
+                        "-----------------------------------------\n\n"
+
+        puts instructions
+    end
+
     def show_board
         board = @controller.get_boardstate
         list = []
@@ -65,7 +77,8 @@ class TicTacToe
         game_status = @controller.get_game_status
         if game_status != 'pending'
             puts 'Game is drawn, there are no more moves!' if game_status == "drawn"
-            puts 'CONGRATULATIONS!!! You beat our very advance AI!!' if game_status == "X win"
+            puts 'CONGRATULATIONS!!! You beat our very advanced AI!!' if game_status == "X win"
+            puts "UNLUCKY!!! Our very advanced AI outsmarted you!!" if game_status == "O win"
             quit_game
         end
     end

@@ -12,9 +12,20 @@ describe "Game initiation" do
     end
 
     context "player starts game" do
+        it "displays the instructions and an empty board" do
+            instructions = "Welcome to Tic Tac Toe.\n"\
+            "INSTRUCTIONS:\n"\
+            "To win the game, get three in a line.\n"\
+            "To quit the game, type 'quit'.\n"\
+            "To make a move give a grid reference.\n"\
+            "  A|B|C\n1 _|_|_\n2 _|_|_\n3 _|_|_\n"\
+            "-----------------------------------------\n\n"
+            expect { @game.introduce_game }.to output(instructions).to_stdout
+        end
+
         it "displays an empty board" do
             grid = "_|_|_\n_|_|_\n_|_|_\n"
-            expect {@game.show_board}.to output(grid).to_stdout
+            expect{ @game.show_board }.to output(grid).to_stdout
         end
     end
 
@@ -31,7 +42,7 @@ describe "Game initiation" do
             allow(@game).to receive(:gets).and_return('A1')
             @game.player_move
             grid = "X|_|_\n_|_|_\n_|_|_\n"
-            expect {@game.show_board}.to output(grid).to_stdout
+            expect { @game.show_board }.to output(grid).to_stdout
         end
     end
 
@@ -52,7 +63,7 @@ describe "Game initiation" do
             message = "Please enter a valid move: \nCannot place move here\nPlease enter a valid move: \n"
             expect{@game.player_move}.to output(message).to_stdout
             grid = "X|_|_\nO|_|_\n_|_|_\n"
-            expect {@game.show_board}.to output(grid).to_stdout
+            expect { @game.show_board }.to output(grid).to_stdout
         end
     end
 
@@ -62,7 +73,7 @@ describe "Game initiation" do
             message = "Please enter a valid move: \nInvalid input\nPlease enter a valid move: \n"
             expect{@game.player_move}.to output(message).to_stdout
             grid = "X|_|_\n_|_|_\n_|_|_\n"
-            expect {@game.show_board}.to output(grid).to_stdout
+            expect { @game.show_board }.to output(grid).to_stdout
         end
     end
 
@@ -92,7 +103,22 @@ describe "Game initiation" do
             @game.player_move
             @game.computer_move
             @game.player_move
-            message = "CONGRATULATIONS!!! You beat our very advance AI!!\n"
+            message = "CONGRATULATIONS!!! You beat our very advanced AI!!\n"
+            expect { @game.end_game_if_over }.to output(message).to_stdout
+            expect(@game.game_over).to eq(true)  
+        end
+    end
+
+    context "A line of of 3 O's" do
+        it 'ends the game with a message saying the player has lost' do
+            allow(@game).to receive(:gets).and_return('A3', 'B3', 'A2',)
+            @game.player_move
+            @game.computer_move
+            @game.player_move
+            @game.computer_move
+            @game.player_move
+            @game.computer_move
+            message = "UNLUCKY!!! Our very advanced AI outsmarted you!!\n"
             expect { @game.end_game_if_over }.to output(message).to_stdout
             expect(@game.game_over).to eq(true)  
         end
