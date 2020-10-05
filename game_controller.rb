@@ -32,8 +32,8 @@ class GameController
 
     def get_game_status
         current_board = get_boardstate
-        return "X won" if three_in_a_line?(current_board, "X")
-        return "O won" if three_in_a_line?(current_board, "O")
+        return "X win" if three_in_a_line?(current_board, "X")
+        return "O win" if three_in_a_line?(current_board, "O")
         return "drawn" if not current_board.flatten.include?('_')
         'pending'     
     end
