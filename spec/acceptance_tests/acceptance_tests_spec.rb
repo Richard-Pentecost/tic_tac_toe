@@ -85,7 +85,7 @@ describe "Game initiation" do
     end
 
     context "A line of of 3 X's" do
-        xit 'ends the game with a message saying the player has won' do
+        it 'ends the game with a message saying the player has won' do
             allow(@game).to receive(:gets).and_return('A1', 'A2', 'A3',)
             @game.player_move
             @game.computer_move
