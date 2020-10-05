@@ -23,9 +23,7 @@ describe TicTacToe do
         end
 
         it "shows the board after a player has made a move" do
-
             allow(game_controller).to receive(:get_boardstate).and_return([['X','_','_'],['_','_','_'],['_','_','_']])
-
             game = described_class.new(game_controller)
             grid = "X|_|_\n_|_|_\n_|_|_\n"
             expect {game.show_board}.to output(grid).to_stdout
@@ -141,6 +139,20 @@ describe TicTacToe do
             allow(game_controller).to receive(:get_game_status).and_return("drawn")
             game = described_class.new(game_controller)
             message = "Game is drawn, there are no more moves!\n"
+            expect {game.end_game_if_over}.to output(message).to_stdout  
+        end
+
+        it 'set @game_over to true if game is won' do
+            allow(game_controller).to receive(:get_game_status).and_return("X win")
+            game = described_class.new(game_controller)
+            game.end_game_if_over
+            expect(game.game_over).to eq(true)
+        end
+
+        it 'Prints win game message when player wins game' do
+            allow(game_controller).to receive(:get_game_status).and_return("X win")
+            game = described_class.new(game_controller)
+            message = "CONGRATULATIONS!!! You beat our very advance AI!!\n"
             expect {game.end_game_if_over}.to output(message).to_stdout  
         end
     end

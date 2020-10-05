@@ -64,7 +64,8 @@ class TicTacToe
     def end_game_if_over 
         game_status = @controller.get_game_status
         if game_status != 'pending'
-            puts 'Game is drawn, there are no more moves!'
+            puts 'Game is drawn, there are no more moves!' if game_status == "drawn"
+            puts 'CONGRATULATIONS!!! You beat our very advance AI!!' if game_status == "X win"
             quit_game
         end
     end

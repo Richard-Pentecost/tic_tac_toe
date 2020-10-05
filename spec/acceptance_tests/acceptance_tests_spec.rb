@@ -41,7 +41,7 @@ describe "Game initiation" do
             @game.player_move
             @game.computer_move
             grid = "X|O|_\n_|_|_\n_|_|_\n"
-            expect {@game.show_board}.to output(grid).to_stdout
+            expect { @game.show_board }.to output(grid).to_stdout
         end
     end
 
