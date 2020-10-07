@@ -16,6 +16,8 @@ Assumptions
 -Human player always goes first
 -The computer is non-optimal (for now); it will move in the next available space
 
+A nice python mimimax example
+https://levelup.gitconnected.com/mastering-tic-tac-toe-with-minimax-algorithm-3394d65fa88f
 
 _|_|_
 _|_|_
