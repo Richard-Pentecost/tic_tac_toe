@@ -2,13 +2,14 @@ require_relative 'game_controller'
 require_relative 'board'
 require_relative 'tic_tac_toe'
 require_relative 'computer'
+require_relative 'board_checker'
 
 board = Board.new
 
 computer = Computer.new
 
 game_controller = GameController.new(board, computer)
-game_comtroller.add_board_checker(BoardChecker.new)
+game_controller.add_board_checker(BoardChecker.new)
 
 tic_tac_toe = TicTacToe.new(game_controller)
 
