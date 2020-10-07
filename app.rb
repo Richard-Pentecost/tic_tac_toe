@@ -8,6 +8,7 @@ board = Board.new
 computer = Computer.new
 
 game_controller = GameController.new(board, computer)
+game_comtroller.add_board_checker(BoardChecker.new)
 
 tic_tac_toe = TicTacToe.new(game_controller)
 

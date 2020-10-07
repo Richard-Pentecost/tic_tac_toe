@@ -3,6 +3,7 @@ require_relative '../../board.rb'
 require_relative '../../game_controller.rb'
 require_relative '../../computer.rb'
 require_relative '../../minimax_computer.rb'
+require_relative '../../board_checker.rb'
 
 describe 'Tic Tac Toe Game' do
 
@@ -11,6 +12,7 @@ describe 'Tic Tac Toe Game' do
             board = Board.new
             computer = 'computer'
             game_controller = GameController.new(board, computer)
+            game_controller.add_board_checker(BoardChecker.new)
             @game = TicTacToe.new(game_controller)
         end
 
@@ -55,6 +57,7 @@ describe 'Tic Tac Toe Game' do
             board = Board.new
             computer = Computer.new
             game_controller = GameController.new(board, computer)
+            game_controller.add_board_checker(BoardChecker.new)
             @game = TicTacToe.new(game_controller)
         end
 
@@ -142,6 +145,7 @@ describe 'Tic Tac Toe Game' do
             board = Board.new
             computer = MinimaxComputer.new
             game_controller = GameController.new(board, computer)
+            game_controller.add_board_checker(BoardChecker.new)
             @game = TicTacToe.new(game_controller)
         end
 

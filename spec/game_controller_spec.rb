@@ -78,94 +78,110 @@ describe GameController do
 
     context "get_game_status" do
         let(:board) {double("board")}
+        let(:board_checker) {double("board_checker")}
         it "returns pending if the board is not won or drawn" do
-            allow(board).to receive(:board).and_return([['_','_','_'],['_','_','_'],['_','_','_']])
+            current_board = [['_','_','_'],['_','_','_'],['_','_','_']]
+            allow(board).to receive(:board).and_return(current_board)
+            allow(board_checker).to receive(:three_in_a_line?).with(current_board,"X").and_return(false)
+            allow(board_checker).to receive(:three_in_a_line?).with(current_board,"O").and_return(false)
             computer = "computer"
             game_controller =  described_class.new(board, computer)
+            game_controller.add_board_checker(board_checker)
             expect(game_controller.get_game_status).to eq("pending")
         end
 
         it "returns drawn if the board is a draw" do
-            allow(board).to receive(:board).and_return([['O','X','O'],['X','X','O'],['X','O','X']])
+            current_board = [['O','X','O'],['X','X','O'],['X','O','X']]
+            allow(board).to receive(:board).and_return(current_board)
+            allow(board_checker).to receive(:three_in_a_line?).with(current_board,"X").and_return(false)
+            allow(board_checker).to receive(:three_in_a_line?).with(current_board,"O").and_return(false)
             computer = "computer"
             game_controller =  described_class.new(board, computer)
+            game_controller.add_board_checker(board_checker)
             expect(game_controller.get_game_status).to eq("drawn")
         end
 
         it "returns X win if the board is won by X" do
-            allow(board).to receive(:board).and_return([['X','_','O'],['X','X','O'],['X','O','X']])
+            current_board = [['X','_','O'],['X','X','O'],['X','O','X']]
+            allow(board).to receive(:board).and_return(current_board)
+            allow(board_checker).to receive(:three_in_a_line?).with(current_board,"X").and_return(true)
             computer = "computer"
             game_controller =  described_class.new(board, computer)
+            game_controller.add_board_checker(board_checker)
             expect(game_controller.get_game_status).to eq("X win")
         end
 
         it "returns O win if the board is won by O" do
-            allow(board).to receive(:board).and_return([['X','O','O'],['X','O','X'],['O','O','X']])
+            current_board = [['X','O','O'],['X','O','X'],['O','O','X']]
+            allow(board).to receive(:board).and_return(current_board)
+            allow(board_checker).to receive(:three_in_a_line?).with(current_board,"X").and_return(false)
+            allow(board_checker).to receive(:three_in_a_line?).with(current_board,"O").and_return(true)
             computer = "computer"
             game_controller =  described_class.new(board, computer)
+            game_controller.add_board_checker(board_checker)
             expect(game_controller.get_game_status).to eq("O win")
         end
     end
 
-    context "three_in_a_line?" do
-        before(:each) do
-            computer = 'computer'
-            board = 'board'
-            @game_controller = described_class.new(board, computer)
-        end
-        it "returns false, if there aren't 3 X's in a row and checking for X" do
-            current_board = [['_','_','_'],['_','_','_'],['_','_','_']]
-            expect(@game_controller.three_in_a_line?(current_board, "X")).to eq(false)
-        end
+    # context "three_in_a_line?" do
+    #     before(:each) do
+    #         computer = 'computer'
+    #         board = 'board'
+    #         @game_controller = described_class.new(board, computer)
+    #     end
+    #     it "returns false, if there aren't 3 X's in a row and checking for X" do
+    #         current_board = [['_','_','_'],['_','_','_'],['_','_','_']]
+    #         expect(@game_controller.three_in_a_line?(current_board, "X")).to eq(false)
+    #     end
         
-        it "returns true, if top row has all X's and checking for X" do
-            current_board = [['X','X','X'],['_','_','_'],['_','_','_']]
-            expect(@game_controller.three_in_a_line?(current_board, "X")).to eq(true)
-        end
+    #     it "returns true, if top row has all X's and checking for X" do
+    #         current_board = [['X','X','X'],['_','_','_'],['_','_','_']]
+    #         expect(@game_controller.three_in_a_line?(current_board, "X")).to eq(true)
+    #     end
 
-        it "returns true, if top row has all X's and checking for X" do
-            current_board = [['_','_','_'],['X','X','X'],['_','_','_']]
-            expect(@game_controller.three_in_a_line?(current_board, "X")).to eq(true)
-        end
+    #     it "returns true, if top row has all X's and checking for X" do
+    #         current_board = [['_','_','_'],['X','X','X'],['_','_','_']]
+    #         expect(@game_controller.three_in_a_line?(current_board, "X")).to eq(true)
+    #     end
 
-        it "returns true, if top row has all X's and checking for O" do
-            current_board = [['O','O','O'],['_','_','_'],['_','_','_']]
-            expect(@game_controller.three_in_a_line?(current_board, "O")).to eq(true)
-        end
+    #     it "returns true, if top row has all X's and checking for O" do
+    #         current_board = [['O','O','O'],['_','_','_'],['_','_','_']]
+    #         expect(@game_controller.three_in_a_line?(current_board, "O")).to eq(true)
+    #     end
 
-        it "returns true, if first column has all X's and checking for X" do
-            current_board = [['X','_','_'],['X','_','_'],['X','_','_']]
-            expect(@game_controller.three_in_a_line?(current_board, "X")).to eq(true)
-        end
+    #     it "returns true, if first column has all X's and checking for X" do
+    #         current_board = [['X','_','_'],['X','_','_'],['X','_','_']]
+    #         expect(@game_controller.three_in_a_line?(current_board, "X")).to eq(true)
+    #     end
 
-        it "returns true, if last column has all X's and checking for X" do
-            current_board = [['_','_','X'],['_','_','X'],['_','_','X']]
-            expect(@game_controller.three_in_a_line?(current_board, "X")).to eq(true)
-        end
+    #     it "returns true, if last column has all X's and checking for X" do
+    #         current_board = [['_','_','X'],['_','_','X'],['_','_','X']]
+    #         expect(@game_controller.three_in_a_line?(current_board, "X")).to eq(true)
+    #     end
 
-        it "returns true, if middle column has all O's and checking for O" do
-            current_board = [['_','O','_'],['_','O','_'],['_','O','_']]
-            expect(@game_controller.three_in_a_line?(current_board, "O")).to eq(true)
-        end
+    #     it "returns true, if middle column has all O's and checking for O" do
+    #         current_board = [['_','O','_'],['_','O','_'],['_','O','_']]
+    #         expect(@game_controller.three_in_a_line?(current_board, "O")).to eq(true)
+    #     end
 
-        it "returns true, if diagonal has all X's and checking for X" do
-            current_board = [['X','_','_'],['_','X','_'],['_','_','X']]
-            expect(@game_controller.three_in_a_line?(current_board, "X")).to eq(true)
-        end
+    #     it "returns true, if diagonal has all X's and checking for X" do
+    #         current_board = [['X','_','_'],['_','X','_'],['_','_','X']]
+    #         expect(@game_controller.three_in_a_line?(current_board, "X")).to eq(true)
+    #     end
 
-        it "returns true, if diagonal has all O's and checking for O" do
-            current_board = [['O','_','_'],['_','O','_'],['_','_','O']]
-            expect(@game_controller.three_in_a_line?(current_board, "O")).to eq(true)
-        end
+    #     it "returns true, if diagonal has all O's and checking for O" do
+    #         current_board = [['O','_','_'],['_','O','_'],['_','_','O']]
+    #         expect(@game_controller.three_in_a_line?(current_board, "O")).to eq(true)
+    #     end
 
-        it "returns true, if diagonal has all X's and checking for X" do
-            current_board = [['_','_','X'],['_','X','_'],['X','_','_']]
-            expect(@game_controller.three_in_a_line?(current_board, "X")).to eq(true)
-        end
+    #     it "returns true, if diagonal has all X's and checking for X" do
+    #         current_board = [['_','_','X'],['_','X','_'],['X','_','_']]
+    #         expect(@game_controller.three_in_a_line?(current_board, "X")).to eq(true)
+    #     end
 
-        it "returns true, if diagonal has all X's, with O's in the board and checking for X" do
-            current_board = [['O','_','X'],['_','X','O'],['X','_','_']]
-            expect(@game_controller.three_in_a_line?(current_board, "X")).to eq(true)
-        end
-    end
+    #     it "returns true, if diagonal has all X's, with O's in the board and checking for X" do
+    #         current_board = [['O','_','X'],['_','X','O'],['X','_','_']]
+    #         expect(@game_controller.three_in_a_line?(current_board, "X")).to eq(true)
+    #     end
+    # end
 end

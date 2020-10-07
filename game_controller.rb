@@ -6,6 +6,10 @@ class GameController
         @turn = 0
     end
 
+    def add_board_checker(board_checker)
+        @board_checker = board_checker
+    end
+
     def move(column, row) 
         sym = 'X'
         sym = 'O' if @turn.odd?
@@ -32,49 +36,49 @@ class GameController
 
     def get_game_status
         current_board = get_boardstate
-        return "X win" if three_in_a_line?(current_board, "X")
-        return "O win" if three_in_a_line?(current_board, "O")
+        return "X win" if @board_checker.three_in_a_line?(current_board, "X")
+        return "O win" if @board_checker.three_in_a_line?(current_board, "O")
         return "drawn" if not current_board.flatten.include?('_')
         'pending'     
     end
 
-    def three_in_a_line?(current_board, symbol)
-        return true if three_in_a_row?(current_board, symbol)
-        return true if three_in_a_column?(current_board, symbol)
-        return true if three_in_a_diagonal?(current_board, symbol)
-        false
-    end
+    # def three_in_a_line?(current_board, symbol)
+    #     return true if three_in_a_row?(current_board, symbol)
+    #     return true if three_in_a_column?(current_board, symbol)
+    #     return true if three_in_a_diagonal?(current_board, symbol)
+    #     false
+    # end
 
-    def three_in_a_row?(current_board, symbol)
-        current_board.each do |row|
-            return true if row == [symbol,symbol,symbol]
-        end
-        false
-    end
+    # def three_in_a_row?(current_board, symbol)
+    #     current_board.each do |row|
+    #         return true if row == [symbol,symbol,symbol]
+    #     end
+    #     false
+    # end
 
-    def three_in_a_column?(current_board, symbol)
-        (0..2).each do |column_index|
-            if current_board[0][column_index] == symbol and 
-                current_board[1][column_index] == symbol and 
-                current_board[2][column_index] == symbol
-                return true
-            end
-        end
-        false
-    end
+    # def three_in_a_column?(current_board, symbol)
+    #     (0..2).each do |column_index|
+    #         if current_board[0][column_index] == symbol and 
+    #             current_board[1][column_index] == symbol and 
+    #             current_board[2][column_index] == symbol
+    #             return true
+    #         end
+    #     end
+    #     false
+    # end
 
-    def three_in_a_diagonal?(current_board, symbol)
-        if current_board[0][0] == symbol and
-            current_board[1][1] == symbol and
-            current_board[2][2] == symbol
-            return true
-        end
-        if current_board[0][2] == symbol and
-            current_board[1][1] == symbol and
-            current_board[2][0] == symbol
-            return true
-        end
-        false
-    end
+    # def three_in_a_diagonal?(current_board, symbol)
+    #     if current_board[0][0] == symbol and
+    #         current_board[1][1] == symbol and
+    #         current_board[2][2] == symbol
+    #         return true
+    #     end
+    #     if current_board[0][2] == symbol and
+    #         current_board[1][1] == symbol and
+    #         current_board[2][0] == symbol
+    #         return true
+    #     end
+    #     false
+    # end
 
 end
