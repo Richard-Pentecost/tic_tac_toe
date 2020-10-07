@@ -23,6 +23,10 @@ Assumptions
 A nice python mimimax example
 https://levelup.gitconnected.com/mastering-tic-tac-toe-with-minimax-algorithm-3394d65fa88f
 
+Minimax slides
+https://docs.google.com/presentation/d/197WBczhHpnisaF6cr-XHEI5KDngCKzhZNaxw5OHtw1Q/edit#slide=id.g9641eb9915_0_47
+
+
 _|_|_
 _|_|_
 _|_|_
