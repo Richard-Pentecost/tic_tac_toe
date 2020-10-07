@@ -73,4 +73,11 @@ describe MinimaxComputer do
             expect(@minimax_computer.score_board(board)).to eq(0)
         end
     end
+
+    context '.possible_positions' do
+        it 'returns list of possible positions as coordinates in an array' do
+
+        end
+    end
+        
 end

@@ -16,10 +16,12 @@ class MinimaxComputer
                 end
             end
         end
-
+        
+        # score_board()
         [1,1]
     end
 
+    
     def score_board(board)
         return 1 if @board_checker.three_in_a_line?(board, "X")
         return -1 if @board_checker.three_in_a_line?(board, "O")
