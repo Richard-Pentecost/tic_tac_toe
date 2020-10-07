@@ -1,4 +1,10 @@
 class MinimaxComputer
+    attr_accessor :board_checker
+    
+    def initialize(board_checker)
+        @board_checker = board_checker
+    end
+
     def move(board)
         if board.flatten.count('_') == 1
             board.each_with_index do |row, row_index|

@@ -1,6 +1,6 @@
 Next step:
 We need to implement minimax as a strategy alternative to the "basic" computer
-
+Initialise game controller with board checker instaed of adding it
 
 Nice to have:
 Add helper function to acceptance tests
