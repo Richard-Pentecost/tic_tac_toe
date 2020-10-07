@@ -12,39 +12,65 @@ describe MinimaxComputer do
     context ".move" do
         before(:each) do
             board_checker = double("board_checker")
+            @board = double("board")
             @minimax_computer = described_class.new(board_checker)
         end
 
         it "returns [1,1] when given B2 is only available move" do
-            board = [['O','X','X'],['X','_','O'],['X','O','O']]
-            expect(@minimax_computer.move(board)).to eq([1,1])
+            current_board = [['O','X','X'],['X','_','O'],['X','O','O']]
+            allow(@board).to receive(:board).and_return(current_board)
+            expect(@minimax_computer.move(@board)).to eq([1,1])
         end
 
         it "returns [2,2] when given C3 is only available move" do
-            board = [['O','X','X'],['X','O','O'],['X','O','_']]
-            expect(@minimax_computer.move(board)).to eq([2,2])
+            current_board = [['O','X','X'],['X','O','O'],['X','O','_']]
+            allow(@board).to receive(:board).and_return(current_board)
+            expect(@minimax_computer.move(@board)).to eq([2,2])
         end
 
         it "returns [1,1] when given B2 is only available move" do
-            board = [['O','O','X'],['X','_','O'],['X','O','O']]
-            expect(@minimax_computer.move(board)).to eq([1,1])
+            current_board = [['O','O','X'],['X','_','O'],['X','O','O']]
+            allow(@board).to receive(:board).and_return(current_board)
+            expect(@minimax_computer.move(@board)).to eq([1,1])
         end
 
         it "returns [1,1] when a board with 2 options and B2 wins the game" do
-            board = [['O','X','X'],['X','_','_'],['X','O','O']]
-            expect(@minimax_computer.move(board)).to eq([1,1])
+            current_board = [['O','X','X'],['X','_','_'],['X','O','O']]
+            allow(@board).to receive(:board).and_return(current_board)
+            expect(@minimax_computer.move(@board)).to eq([1,1])
         end
 
         xit "returns [0,2] when a board with 2 options and A3 wins the game" do
-          board = [['O','X','X'],['X','X','_'],['_','O','O']]
-          expect(@minimax_computer.move(board)).to eq([0,2])
+          current_board = [['O','X','X'],['X','X','_'],['_','O','O']]
+          allow(@board).to receive(:board).and_return(current_board)
+          expect(@minimax_computer.move(@board)).to eq([0,2])
         end
     end
 
     context '.score_board' do
-        xit 'given a board where X has won give a score of +1' do
-          board = [['O','O','X'],['X','X','O'],['X','O','O']]
-          expect(@minimax_computer.score_board(board)).to eq(1)
+        before(:each) do
+            board_checker = double("board_checker")
+            @minimax_computer = described_class.new(board_checker)
+        end
+        
+        it 'given a board where X has won give a score of +1' do
+            board = [['O','O','X'],['X','X','O'],['X','O','O']]
+            allow(@minimax_computer.board_checker).to receive(:three_in_a_line?).and_return(true)
+            expect(@minimax_computer.score_board(board)).to eq(1)
+        end
+
+        it 'given a board where O has won give a score of -1' do
+            board = [['X','X','O'],['O','O','X'],['O','X','X']]
+            allow(@minimax_computer.board_checker).to receive(:three_in_a_line?).with(board, "X").and_return(false)
+            allow(@minimax_computer.board_checker).to receive(:three_in_a_line?).with(board, "O").and_return(true)
+            expect(@minimax_computer.score_board(board)).to eq(-1)
+        end
+
+        it 'given a board where it is a draw a score of 0' do
+            board = [['O','X','O'],['X','X','O'],['X','O','X']]
+            allow(@minimax_computer.board_checker).to receive(:three_in_a_line?).with(board, "X").and_return(false)
+            allow(@minimax_computer.board_checker).to receive(:three_in_a_line?).with(board, "O").and_return(false)
+            expect(@minimax_computer.score_board(board)).to eq(0)
         end
     end
 end
