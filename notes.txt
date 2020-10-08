@@ -7,6 +7,8 @@ Add helper function to acceptance tests
 Update board presentation, to improve user experience 
 Refactor code
 
+Currently
+Creating function to pass back an array of empty positions
 
 Completed
 Need to check for a winning move

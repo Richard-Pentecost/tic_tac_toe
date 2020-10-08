@@ -74,9 +74,29 @@ describe MinimaxComputer do
         end
     end
 
-    context '.possible_positions' do
-        it 'returns list of possible positions as coordinates in an array' do
+    context '.possible_moves' do
+        it 'returns an empty array if there are no more moves available'do
+            minimax_computer = described_class.new('board_checker')
+            board = [['O','X','O'],['X','X','O'],['X','O','X']]
+            expect(minimax_computer.possible_moves(board)).to eq([])
+        end
 
+        it 'returns an array of [0, 0] inside another array if there is a space at 0, 0' do
+            minimax_computer = described_class.new('board_checker')
+            board = [['_','X','O'],['X','X','O'],['X','O','X']]
+            expect(minimax_computer.possible_moves(board)).to eq([[0,0]])
+        end
+
+        it 'returns an array of [1, 1] inside another array if there is a space at 1, 1' do
+            minimax_computer = described_class.new('board_checker')
+            board = [['O','X','O'],['X','_','O'],['X','O','X']]
+            expect(minimax_computer.possible_moves(board)).to eq([[1,1]])
+        end
+
+        it 'returns an array of [1, 1] and [0, 0] inside another array if there is a space at 1, 1 and 0, 0' do
+            minimax_computer = described_class.new('board_checker')
+            board = [['_','X','O'],['X','_','O'],['X','O','X']]
+            expect(minimax_computer.possible_moves(board)).to eq([[0,0],[1,1]])
         end
     end
         
