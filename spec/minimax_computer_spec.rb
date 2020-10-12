@@ -98,6 +98,12 @@ describe MinimaxComputer do
             board = [['_','X','O'],['X','_','O'],['X','O','X']]
             expect(minimax_computer.possible_moves(board)).to eq([[0,0],[1,1]])
         end
+
+        it 'returns an array of [0, 1] and [1, 2] inside another array if there is a space at 1, 1 and 0, 0' do
+            minimax_computer = described_class.new('board_checker')
+            board = [['X','_','O'],['X','O','_'],['X','O','X']]
+            expect(minimax_computer.possible_moves(board)).to eq([[1,0],[2,1]])
+        end
     end
         
 end
