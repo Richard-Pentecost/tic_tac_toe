@@ -37,10 +37,12 @@ describe MinimaxComputer do
         it "returns [1,1] when a board with 2 options and B2 wins the game" do
             current_board = [['O','X','X'],['X','_','_'],['X','O','O']]
             allow(@board).to receive(:board).and_return(current_board)
+            allow(@board).to receive(:add_move)
+            allow(@minimax_computer.board_checker).to receive(:three_in_a_line?).and_return(true, false)
             expect(@minimax_computer.move(@board)).to eq([1,1])
         end
 
-        xit "returns [0,2] when a board with 2 options and A3 wins the game" do
+        it "returns [0,2] when a board with 2 options and A3 wins the game" do
           current_board = [['O','X','X'],['X','X','_'],['_','O','O']]
           allow(@board).to receive(:board).and_return(current_board)
           expect(@minimax_computer.move(@board)).to eq([0,2])

@@ -13,8 +13,23 @@ class MinimaxComputer
             return available_moves[0]
         end
 
+
+        if available_moves.length == 2
+            high_score = -10
+            best_move = []
+            available_moves.each do |test_move|
+                test_board = board.clone
+                test_board.add_move(test_move)
+                score = score_board(test_board.board)
+                if score > high_score
+                    best_move = test_move
+                    high_score == score
+                end
+            end
+        end
+        best_move
         # score_board()
-        [1,1]
+        #[1,1]
     end
 
     def possible_moves(board)
