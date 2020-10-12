@@ -84,6 +84,7 @@ describe GameController do
             allow(board).to receive(:board).and_return(current_board)
             allow(board_checker).to receive(:three_in_a_line?).with(current_board,"X").and_return(false)
             allow(board_checker).to receive(:three_in_a_line?).with(current_board,"O").and_return(false)
+            allow(board_checker).to receive(:full_board?).and_return(false)
             computer = "computer"
             game_controller =  described_class.new(board, computer)
             game_controller.add_board_checker(board_checker)
@@ -95,6 +96,7 @@ describe GameController do
             allow(board).to receive(:board).and_return(current_board)
             allow(board_checker).to receive(:three_in_a_line?).with(current_board,"X").and_return(false)
             allow(board_checker).to receive(:three_in_a_line?).with(current_board,"O").and_return(false)
+            allow(board_checker).to receive(:full_board?).and_return(true)
             computer = "computer"
             game_controller =  described_class.new(board, computer)
             game_controller.add_board_checker(board_checker)

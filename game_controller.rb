@@ -38,7 +38,7 @@ class GameController
         current_board = get_boardstate
         return "X win" if @board_checker.three_in_a_line?(current_board, "X")
         return "O win" if @board_checker.three_in_a_line?(current_board, "O")
-        return "drawn" if not current_board.flatten.include?('_')
+        return "drawn" if @board_checker.full_board?(current_board)
         'pending'     
     end
 end

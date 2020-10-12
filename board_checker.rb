@@ -1,5 +1,10 @@
 class BoardChecker 
 
+    def full_board?(current_board)
+        return false if current_board.flatten.include?('_')
+        true
+    end
+
     def three_in_a_line?(current_board, symbol)
         return true if three_in_a_row?(current_board, symbol)
         return true if three_in_a_column?(current_board, symbol)

@@ -1,4 +1,6 @@
 require_relative '../minimax_computer.rb'
+require_relative '../board.rb'
+require_relative '../board_checker.rb'
 
 describe MinimaxComputer do
 
@@ -34,18 +36,39 @@ describe MinimaxComputer do
             expect(@minimax_computer.move(@board)).to eq([1,1])
         end
 
-        it "returns [1,1] when a board with 2 options and B2 wins the game" do
-            current_board = [['O','X','X'],['X','_','_'],['X','O','O']]
-            allow(@board).to receive(:board).and_return(current_board)
-            allow(@board).to receive(:add_move)
-            allow(@minimax_computer.board_checker).to receive(:three_in_a_line?).and_return(true, false)
-            expect(@minimax_computer.move(@board)).to eq([1,1])
+        xit "returns [1,1] when a board with 2 options and B2 wins the game" do
+            board = Board.new
+            board.board = [['O','X','X'],['X','_','_'],['X','O','O']]
+            board_checker = BoardChecker.new
+            minimax_computer = MinimaxComputer.new(board_checker)
+            # allow(@board).to receive(:board).and_return(current_board)
+            # allow(@board).to receive(:add_move)
+            # allow(minimax_computer.board_checker).to receive(:three_in_a_line?).and_return(false, true, false)
+            # allow(minimax_computer.board_checker).to receive(:drawn_board?).and_return(false)
+            expect(minimax_computer.move(board)).to eq([1,1])
         end
 
-        it "returns [0,2] when a board with 2 options and A3 wins the game" do
-          current_board = [['O','X','X'],['X','X','_'],['_','O','O']]
-          allow(@board).to receive(:board).and_return(current_board)
-          expect(@minimax_computer.move(@board)).to eq([0,2])
+        it "returns [1,1] when a board with 2 options and B2 wins the game" do
+            board = Board.new
+            board.board = [['O','X','X'],['X','_','_'],['X','O','O']]
+            board_checker = BoardChecker.new
+            minimax_computer = MinimaxComputer.new(board_checker)
+            
+            # allow(@board).to receive(:board).and_return(current_board)
+            # allow(@board).to receive(:add_move)
+            # allow(@minimax_computer.board_checker).to receive(:three_in_a_line?).and_return(false, true, false)
+            # allow(@minimax_computer.board_checker).to receive(:drawn_board?).and_return(false)
+            hash = { [1,1] => -1, [2,1] => 1 }
+            minimax_computer.move(board)
+            expect(minimax_computer.scores_hash).to eq(hash)
+        end
+
+        xit "returns [0,2] when a board with 2 options and A3 wins the game" do
+            current_board = [['O','X','X'],['X','X','_'],['_','O','O']]
+            allow(@board).to receive(:board).and_return(current_board)
+            allow(@board).to receive(:add_move)
+            allow(@minimax_computer.board_checker).to receive(:three_in_a_line?).and_return(false, true)
+            expect(@minimax_computer.move(@board)).to eq([0,2])
         end
     end
 
