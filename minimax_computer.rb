@@ -7,16 +7,12 @@ class MinimaxComputer
 
     def move(board)
         current_board = board.board
-        if current_board.flatten.count('_') == 1
-            current_board.each_with_index do |row, row_index|
-                row.each_with_index do |symbol, column_index|
-                    if symbol == "_"
-                        return [column_index, row_index]
-                    end
-                end
-            end
+        available_moves = possible_moves(current_board)
+
+        if available_moves.length == 1
+            return available_moves[0]
         end
-        
+
         # score_board()
         [1,1]
     end
