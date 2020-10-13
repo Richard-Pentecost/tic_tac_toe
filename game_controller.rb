@@ -23,6 +23,8 @@ class GameController
 
     def run_ai
         coordinates = @computer.move(@board)
+        # puts "=============================="
+        # p coordinates
         move(coordinates[0], coordinates[1])
     end
 

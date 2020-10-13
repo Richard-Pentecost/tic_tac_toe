@@ -143,12 +143,16 @@ describe 'Tic Tac Toe Game' do
     describe "Game play with Minimax AI" do
         before(:each) do
             board = Board.new
-            computer = MinimaxComputer.new
+            board_checker = BoardChecker.new
+            computer = MinimaxComputer.new(board_checker)
             game_controller = GameController.new(board, computer)
-            game_controller.add_board_checker(BoardChecker.new)
+            game_controller.add_board_checker(board_checker)
             @game = TicTacToe.new(game_controller)
         end
 
+        #xox
+        #xo
+        #
         context 'When there is an opportunity for the computer to win' do
             xit 'computer plays the correct move and the game ends with a message saying player has lost' do
                 allow(@game).to receive(:gets).and_return('A1', 'B1', 'C1', 'B2', 'A2')
