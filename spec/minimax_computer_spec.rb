@@ -77,7 +77,7 @@ describe MinimaxComputer do
             board.board = [['X','O','X'],['X','O','_'],['_','_','_']]
             board_checker = BoardChecker.new
             minimax_computer = MinimaxComputer.new(board_checker)
-            hash = { [2,1] => 1, [0,2] => 1, [1,2] => -1, [2,2] => 1 }
+            hash = { [2,1] => 1, [0,2] => 0, [1,2] => -1, [2,2] => 1 }
             minimax_computer.move(board)
             expect(minimax_computer.scores_hash).to eq(hash)
         end
