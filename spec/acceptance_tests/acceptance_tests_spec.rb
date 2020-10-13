@@ -154,7 +154,7 @@ describe 'Tic Tac Toe Game' do
         #xo
         #
         context 'When there is an opportunity for the computer to win' do
-            xit 'computer plays the correct move and the game ends with a message saying player has lost' do
+            it 'computer plays the correct move and the game ends with a message saying player has lost' do
                 allow(@game).to receive(:gets).and_return('A1', 'B1', 'C1', 'B2', 'A2')
                 5.times { @game.player_move }
                 @game.computer_move 

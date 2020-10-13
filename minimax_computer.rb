@@ -74,21 +74,16 @@ class MinimaxComputer
                                     poss_last_move = possible_moves(comp_sec_board.board)
                                     comp_sec_board.add_move(poss_last_move[0][0], poss_last_move[0][1], "X")
                                     score = score_board(comp_sec_board.board)
-                                    computer_second_score_hash.merge!(poss_last_move => score)
+                                    computer_second_score_hash.merge!(poss_last_move[0] => score)
                                 end
                             end
-                            puts "+++++++++++++++++++++++++++"
-                            puts computer_second_score_hash
+
+                            best_comp_score = computer_second_score_hash.values.min
+                            opponents_score_hash.merge!(opponent_move => best_comp_score)
                         end
                     end
-                    puts "***************************"
-                    puts opponents_score_hash
-                    
-                    # best_opponent_move = opponents_score_hash.key(opponents_score_hash.values.max)
-                    # @score_hash.merge!(best_opponent_move => opponents_score_hash.values.max)
-
-                    # score = score_board(test_board.board)
-                    # @scores_hash.merge!(test_move => score)
+                    best_oppo_score = opponents_score_hash.values.max
+                    @scores_hash.merge!(test_move => best_oppo_score)
                 end
             end
         end
@@ -96,9 +91,6 @@ class MinimaxComputer
 
         best_move = @scores_hash.key(@scores_hash.values.min)
         return best_move
-        
-        # score_board()
-        #[1,1]
     end
 
     
