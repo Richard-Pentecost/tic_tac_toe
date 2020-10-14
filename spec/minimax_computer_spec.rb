@@ -13,81 +13,40 @@ describe MinimaxComputer do
 
     context ".move" do
         before(:each) do
-            board_checker = double("board_checker")
-            @board = double("board")
-            @minimax_computer = described_class.new(board_checker)
+            @board = Board.new
+            board_checker = BoardChecker.new
+            @minimax_computer = MinimaxComputer.new(board_checker)
         end
 
         it "returns [1,1] when given B2 is only available move" do
-            current_board = [['O','X','X'],['X','_','O'],['X','O','O']]
-            allow(@board).to receive(:board).and_return(current_board)
+            @board.board= [['O','X','X'],['X','_','O'],['X','O','O']]        
             expect(@minimax_computer.move(@board)).to eq([1,1])
         end
 
         it "returns [2,2] when given C3 is only available move" do
-            current_board = [['O','X','X'],['X','O','O'],['X','O','_']]
-            allow(@board).to receive(:board).and_return(current_board)
+            @board.board = [['O','X','X'],['X','O','O'],['X','O','_']]
             expect(@minimax_computer.move(@board)).to eq([2,2])
         end
 
         it "returns [1,1] when given B2 is only available move" do
-            current_board = [['O','O','X'],['X','_','O'],['X','O','O']]
-            allow(@board).to receive(:board).and_return(current_board)
+            @board.board = [['O','O','X'],['X','_','O'],['X','O','O']]
             expect(@minimax_computer.move(@board)).to eq([1,1])
         end
         
-        it "returns correct hash when a board with 2 options and B2 wins the game" do
-            board = Board.new
-            board.board = [['O','X','X'],['X','_','_'],['X','O','O']]
-            board_checker = BoardChecker.new
-            minimax_computer = MinimaxComputer.new(board_checker)
-            hash = { [1,1] => -1, [2,1] => 1 }
-            minimax_computer.move(board)
-            expect(minimax_computer.scores_hash).to eq(hash)
-        end
 
         it "returns [1,1] when a board with 2 options and B2 wins the game" do
-            board = Board.new
-            board.board = [['O','X','X'],['X','_','_'],['X','O','O']]
-            board_checker = BoardChecker.new
-            minimax_computer = MinimaxComputer.new(board_checker)
-            expect(minimax_computer.move(board)).to eq([1,1])
+            @board.board = [['O','X','X'],['X','_','_'],['X','O','O']]
+            expect(@minimax_computer.move(@board)).to eq([1,1])
         end
 
-        it "returns correct hash when a board with 2 options and A3 wins the game" do
-            board = Board.new
-            board.board = [['O','X','X'],['X','X','_'],['_','O','O']]
-            board_checker = BoardChecker.new
-            minimax_computer = MinimaxComputer.new(board_checker)
-            hash = { [2,1] => 1, [0,2] => -1 }
-            minimax_computer.move(board)
-            expect(minimax_computer.scores_hash).to eq(hash)
-        end
-
-        it "returns [0,2] when a board with 2 options and A3 wins the game" do
-            board = Board.new
-            board.board = [['O','X','X'],['X','X','_'],['_','O','O']]
-            board_checker = BoardChecker.new
-            minimax_computer = MinimaxComputer.new(board_checker)
-            expect(minimax_computer.move(board)).to eq([0,2])
-        end
-
-        it "returns the correct hash when a board with 4 options and B3 wins the game" do
-            board = Board.new
-            board.board = [['X','O','X'],['X','O','_'],['_','_','_']]
-            board_checker = BoardChecker.new
-            minimax_computer = MinimaxComputer.new(board_checker)
-            hash = { [2,1] => 1, [0,2] => 0, [1,2] => -1, [2,2] => 1 }
-            minimax_computer.move(board)
-            expect(minimax_computer.scores_hash).to eq(hash)
+        it "returns [0,2] when a board with 2 options and A3 wins the game" do 
+            @board.board = [['O','X','X'],['X','X','_'],['_','O','O']]
+            expect(@minimax_computer.move(@board)).to eq([0,2])
         end
 
         it "returns [1,2] when a board with 4 options and B3 wins the game" do
-            board = Board.new
-            board.board = [['X','O','X'],['X','O','_'],['_','_','_']]
-            board_checker = BoardChecker.new
-            minimax_computer = MinimaxComputer.new(board_checker)
-            expect(minimax_computer.move(board)).to eq([1,2])
+            @board.board = [['X','O','X'],['X','O','_'],['_','_','_']]
+            expect(@minimax_computer.move(@board)).to eq([1,2])
         end
     end
 
