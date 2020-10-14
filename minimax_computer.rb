@@ -114,6 +114,10 @@ class MinimaxComputer
         0
     end
 
+    def minimax_algorithm(board)
+        
+    end
+
     private
 
     def game_over?(board)
