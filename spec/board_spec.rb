@@ -1,4 +1,4 @@
-require_relative '../board'
+require 'board'
 
 describe Board do
   context 'initialize board' do

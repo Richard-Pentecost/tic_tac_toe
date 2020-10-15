@@ -1,4 +1,4 @@
-require_relative "../tic_tac_toe.rb"
+require "tic_tac_toe"
 
 describe TicTacToe do
     before(:each) do

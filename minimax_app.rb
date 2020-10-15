@@ -1,8 +1,8 @@
-require_relative 'game_controller'
-require_relative 'board'
-require_relative 'tic_tac_toe'
-require_relative 'minimax_computer'
-require_relative 'board_checker'
+require_relative 'lib/game_controller'
+require_relative 'lib/board'
+require_relative 'lib/tic_tac_toe'
+require_relative 'lib/minimax_computer'
+require_relative 'lib/board_checker'
 
 board = Board.new
 
