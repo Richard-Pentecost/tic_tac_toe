@@ -28,7 +28,7 @@ describe TicTacToeWeb do
             expect(last_response.body).to have_tag('input', :with => { :type => "submit", :value => "X", :id => "B1" })
         end
 
-        xit "displays the computers move with an 'O'" do
+        it "displays the computers move with an 'O'" do
             # Act
             post '/tictactoe', :B1 => "X" 
             get '/tictactoe'

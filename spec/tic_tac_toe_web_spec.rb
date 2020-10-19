@@ -69,7 +69,9 @@ describe TicTacToeWeb do
             get '/tictactoe'
 
             # Assert
-            expect(session[:game_controller].board.board).to eq([['_','_','_'],['_','X','_'],['_','_','_']])
+            expect(session[:game_controller].board.board).to eq([['O','_','_'],['_','X','_'],['_','_','_']])
+            expect(last_response.body).to have_tag('input', :with => { :type => "submit", :value => "X", :id => "B1" })
+            expect(last_response.body).to have_tag('input', :with => { :type => "submit", :value => "O", :id => "A0" })
         end
     end
 

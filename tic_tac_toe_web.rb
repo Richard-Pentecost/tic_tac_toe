@@ -29,16 +29,21 @@ class TicTacToeWeb < Sinatra::Base
       session[:game_controller] = game_controller
     end
 
-    grid_positions = [:A0, :A1, :A2, :B0, :B1, :B2, :C0, :C1, :C2]
+    grid_positions = [:A0, :B0, :C0, :A1, :B1, :C1, :A2, :B2, :C2]
 
     grid_positions.each do |position|
       if params[position] != nil
         session[position] = params[position] 
         player_move = interpret_input(position.to_s)
         session[:game_controller].move(player_move[0], player_move[1])
-        # session[:game_controller].run_ai
+        session[:game_controller].run_ai
+      end   
+    end
+    board = session[:game_controller].board.board.flatten
+    board.each_with_index do |position, index|
+      if position != '_'
+        session[grid_positions[index]] = position 
       end
-      
     end
     redirect "/tictactoe"
   end
