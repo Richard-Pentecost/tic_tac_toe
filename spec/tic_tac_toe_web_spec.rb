@@ -31,7 +31,7 @@ describe TicTacToeWeb do
             # Act
             get '/tictactoe'
             post '/tictactoe', :A0 => "X"
-
+            
             #Assert
             expect(last_response).to be_ok 
         end
