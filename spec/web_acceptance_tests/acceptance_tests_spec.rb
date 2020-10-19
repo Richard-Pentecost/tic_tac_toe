@@ -3,7 +3,7 @@ require_relative "../../tic_tac_toe_web"
 describe TicTacToeWeb do
 
     include Rack::Test::Methods
-    let(:app) { TicTacToeWeb.new }
+    let!(:app) { TicTacToeWeb.new }
     context "goes to the page for the first time" do
         it "shows an empty grid" do
             # Act
@@ -18,6 +18,16 @@ describe TicTacToeWeb do
         end
     end
 
+    context "user clicks the first grid item" do
+        it "displays an X in the grid at position B1" do
+            # Act
+            get '/tictactoe'
+            post '/tictactoe', :B1 => "X" 
+
+            #Assert
+            expect(last_response.body).to have_tag('input', :with => { :type => "submit", :value => "X", :id => "B1" })
+        end
+    end
 end
 
 # <div class="grid-container">
