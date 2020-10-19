@@ -3,7 +3,7 @@ require_relative "../tic_tac_toe_web"
 describe TicTacToeWeb do
 
     include Rack::Test::Methods
-    let!(:app) { TicTacToeWeb.new }
+    let!(:app) { TicTacToeWeb }
     context "goes to the page for the first time" do
         it "returns a 200 status code" do
             # Act
@@ -27,7 +27,6 @@ describe TicTacToeWeb do
     end
 
     context "user plays a first move on the grid" do
-
         it "sends a post request and returns a 200 status code" do
             # Act
             post '/tictactoe', :A0 => "X"
@@ -62,6 +61,15 @@ describe TicTacToeWeb do
 
             #Assert
             expect(last_response.body).to have_tag('input', :with => { :type => "submit", :value => "X", :id => "B1" })
+        end
+
+        it "adds a move to the game controller" do
+            # Act
+            post '/tictactoe', :B1 => "X"
+            get '/tictactoe'
+
+            # Assert
+            expect(session[:game_controller].board.board).to eq([['_','_','_'],['_','X','_'],['_','_','_']])
         end
     end
 

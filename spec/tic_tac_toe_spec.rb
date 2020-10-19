@@ -55,7 +55,6 @@ describe TicTacToe do
             value = allow(@game).to receive(:gets).and_return('hello')
             expect(@game.get_input).to eq('hello')
         end
-       
     end
 
     context 'quit_game' do
