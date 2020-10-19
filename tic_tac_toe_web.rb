@@ -44,7 +44,7 @@ class TicTacToeWeb < Sinatra::Base
     grid_positions = grid_positions_array
 
     grid_positions.each do |position|
-      if params[position] != nil
+      if params[position] != nil and session[position] == nil
         session[position] = params[position] 
         player_move = interpret_input(position.to_s)
         session[:game_controller].move(player_move[0], player_move[1])
@@ -58,7 +58,7 @@ class TicTacToeWeb < Sinatra::Base
     
     board = session[:game_controller].board.board.flatten
     board.each_with_index do |position, index|
-      position == "_" ? position = nil : position = position
+      position == "_" ? position = '' : position = position
       session[grid_positions[index]] = position 
     end
   end

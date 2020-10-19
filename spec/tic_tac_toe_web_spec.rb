@@ -88,4 +88,20 @@ describe TicTacToeWeb do
         end
     end
 
+    context 'User presses reset button' do
+        it 'resets to an emtpy board' do
+            # Arrange
+            post '/tictactoe', :B1 => "X"
+            get '/tictactoe'
+
+            # Act
+            post '/tictactoe', :reset => 'reset'
+
+            # Asset
+            expect(session[:game_controller].board.board).to eq([['_','_','_'],['_','_','_'],['_','_','_']])
+            expect(last_response.body).to have_tag('input', :with => { :type => "submit", :value => '', :id => "B1" })
+            expect(last_response.body).to have_tag('input', :with => { :type => "submit", :value => '', :id => "A0" })
+        end
+    end
+
 end
