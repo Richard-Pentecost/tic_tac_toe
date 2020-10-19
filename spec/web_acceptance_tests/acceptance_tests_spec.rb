@@ -21,20 +21,11 @@ describe TicTacToeWeb do
     context "user clicks the first grid item" do
         it "displays an X in the grid at position B1" do
             # Act
-            get '/tictactoe'
             post '/tictactoe', :B1 => "X" 
+            get '/tictactoe'
 
             #Assert
             expect(last_response.body).to have_tag('input', :with => { :type => "submit", :value => "X", :id => "B1" })
         end
     end
 end
-
-# <div class="grid-container">
-
-# <div class="top-row left-col grid-item" id="item1">
-#   <form action"/ttt" method="post">
-#     <input type="hidden" name="A1" value="X">
-#     <input type="submit" value="<%= @A1 %>" class="ttt-button">
-#   </form>
-# </div>
