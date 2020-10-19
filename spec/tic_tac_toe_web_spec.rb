@@ -37,7 +37,7 @@ describe TicTacToeWeb do
             expect(last_response).to be_ok
         end
 
-        it "displays X in the first grid position" do
+        it "displays X in the A0 position" do
             # Act
             post '/tictactoe', :A0 => "X"
             get '/tictactoe'            
@@ -46,13 +46,22 @@ describe TicTacToeWeb do
             expect(last_response.body).to have_tag('input', :with => { :type => "submit", :value => "X", :id => "A0" })
         end
         
-        it "displays X in the first grid position" do
+        it "displays X in the C2 position" do
             # Act
             post '/tictactoe', :C2 => "X"
             get '/tictactoe'
 
             #Assert
             expect(last_response.body).to have_tag('input', :with => { :type => "submit", :value => "X", :id => "C2" })
+        end
+
+        it "displays X in the B1 position" do
+            # Act
+            post '/tictactoe', :B1 => "X"
+            get '/tictactoe'
+
+            #Assert
+            expect(last_response.body).to have_tag('input', :with => { :type => "submit", :value => "X", :id => "B1" })
         end
     end
 
