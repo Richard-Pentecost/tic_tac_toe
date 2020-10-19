@@ -73,6 +73,19 @@ describe TicTacToeWeb do
             expect(last_response.body).to have_tag('input', :with => { :type => "submit", :value => "X", :id => "B1" })
             expect(last_response.body).to have_tag('input', :with => { :type => "submit", :value => "O", :id => "A0" })
         end
+
+        it "prevents user from playing in occupied space on the grid" do
+            # Act
+            post '/tictactoe', :B1 => "X"
+            get '/tictactoe'
+            post '/tictactoe', :AO => "X"
+            get '/tictactoe'
+
+            # Assert
+            expect(session[:game_controller].board.board).to eq([['O','_','_'],['_','X','_'],['_','_','_']])
+            expect(last_response.body).to have_tag('input', :with => { :type => "submit", :value => "X", :id => "B1" })
+            expect(last_response.body).to have_tag('input', :with => { :type => "submit", :value => "O", :id => "A0" })
+        end
     end
 
 end

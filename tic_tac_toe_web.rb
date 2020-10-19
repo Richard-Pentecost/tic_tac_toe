@@ -16,15 +16,12 @@ class TicTacToeWeb < Sinatra::Base
   end
 
   post '/tictactoe' do
-    if session[:game_controller] == nil
+    if session[:game_controller] == nil or params[:reset] == 'reset'
       game_controller = new_game_setup
       session[:game_controller] = game_controller
     end
-
     play_round
     update_ui_board
-    
-
     redirect "/tictactoe"
   end
 
@@ -61,9 +58,8 @@ class TicTacToeWeb < Sinatra::Base
     
     board = session[:game_controller].board.board.flatten
     board.each_with_index do |position, index|
-      if position != '_'
-        session[grid_positions[index]] = position 
-      end
+      position == "_" ? position = nil : position = position
+      session[grid_positions[index]] = position 
     end
   end
   
