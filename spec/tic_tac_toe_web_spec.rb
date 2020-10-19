@@ -27,22 +27,34 @@ describe TicTacToeWeb do
     end
 
     context "user plays a first move on the grid" do
-        it "sends a post request and returns a 200 status code" do
+        let!(:response) { post "/tictactoe", :A0 => "X" }
+        xit "sends a post request and returns a 200 status code" do
             # Act
             get '/tictactoe'
-            post '/tictactoe', :A0 => "X"
+            post '/tictactoe', :params => {:A0 => "X"}
 
             #Assert
-            expect(last_response).to be_ok 
+            expect(last_response).to be_ok
         end
 
         it "displays X in the first grid position" do
             # Act
+            # get '/tictactoe'
+            
+ #           post '/tictactoe', :A0 => "X"
+            puts "---------------------------------------"
+            p response.body
+            #Assert
+            expect(response.body).to have_tag('input', :with => { :type => "submit", :value => "X", :id => "A0" })
+        end
+
+        xit "displays X in the first grid position" do
+            # Act
             get '/tictactoe'
-            post '/tictactoe', :A0 => "X"
+            post '/tictactoe', :C2 => "X"
 
             #Assert
-            expect(last_response.body).to have_tag('input', :with => { :type => "submit", :value => "X", :id => "A0" })
+            expect(last_response.body).to have_tag('input', :with => { :type => "submit", :value => "X", :id => "C2" })
         end
     end
 
