@@ -2,7 +2,7 @@ require 'sinatra/base'
 require "erb"
 require_relative 'lib/game_controller'
 require_relative 'lib/board'
-require_relative 'lib/computer'
+require_relative 'lib/minimax_computer'
 require_relative 'lib/board_checker'
 
 class TicTacToeWeb < Sinatra::Base
@@ -22,9 +22,10 @@ class TicTacToeWeb < Sinatra::Base
   post '/tictactoe' do
     if session[:game_controller] == nil
       board = Board.new
-      computer = Computer.new
+      board_checker = BoardChecker.new
+      computer = MinimaxComputer.new(board_checker)
       game_controller = GameController.new(board, computer)
-      game_controller.add_board_checker(BoardChecker.new)
+      game_controller.add_board_checker(board_checker)
       session[:game_controller] = game_controller
     end
 
