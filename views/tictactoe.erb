@@ -1,0 +1,13 @@
+<div class="grid-container">
+
+  <% ["0", "1", "2"].each do |row| %>
+    <% ["A","B","C"].each do |col| %>
+      <div class="grid-item">
+        <form action"/ttt" method="post">
+          <input type="hidden" name="<%= col + row %>" value="X">
+          <input type="submit" value="<%= @grid_values[(col + row).to_sym] %>" class="ttt-button">
+        </form>
+      </div>
+    <% end %>
+  <% end %>
+</div>
