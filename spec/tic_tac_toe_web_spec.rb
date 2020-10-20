@@ -20,7 +20,7 @@ describe TicTacToeWeb do
             #Assert
             for row in 0..2
                 for col in ["A", "B", "C"]
-                    expect(last_response.body).to have_tag('input', :with => { :type => "hidde", :name => "#{col}#{row}" })
+                    expect(last_response.body).to have_tag('input', :with => { :type => "hidden", :name => "#{col}#{row}" })
                 end
             end
         end
