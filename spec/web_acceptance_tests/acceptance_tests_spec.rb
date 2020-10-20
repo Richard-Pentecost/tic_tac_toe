@@ -37,4 +37,20 @@ describe TicTacToeWeb do
             expect(last_response.body).to have_tag('input', :with => { :type => "submit", :value => "O", :id => "A0" })
         end
     end
+
+    context "player loses the game" do
+        it "displays an message to the user saying they've lost" do
+            # Arrange
+            losing_message = "UNLUCKY!!! Our very advanced AI outsmarted you!!"
+            post '/tictactoe', :B1 => "X" 
+            post '/tictactoe', :C2 => "X" 
+            post '/tictactoe', :B2 => "X" 
+
+            # Act
+            get '/tictactoe'
+
+            #Assert
+            expect(last_response.body).to include(losing_message)
+        end
+    end
 end

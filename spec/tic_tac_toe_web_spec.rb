@@ -103,6 +103,65 @@ describe TicTacToeWeb do
             expect(last_response.body).to have_tag('input', :with => { :type => "submit", :value => nil, :id => "B1" })
             expect(last_response.body).to have_tag('input', :with => { :type => "submit", :value => nil, :id => "A0" })
         end
+
+        it 'removes message if there is one' do
+            # Arrange
+            losing_message = "UNLUCKY!!! Our very advanced AI outsmarted you!!"
+            post '/tictactoe', :B1 => "X" 
+            post '/tictactoe', :C2 => "X" 
+            post '/tictactoe', :B2 => "X" 
+
+            # Act
+            post '/tictactoe', :reset => 'reset'
+            get '/tictactoe'
+
+            # Asset
+            expect(last_response.body).to_not include(losing_message)
+        end
+    end
+
+    context "Game has finished" do
+        it 'shows a message when player has lost' do
+            # Arrange
+            losing_message = "UNLUCKY!!! Our very advanced AI outsmarted you!!"
+            post '/tictactoe', :B1 => "X" 
+            post '/tictactoe', :C2 => "X" 
+            post '/tictactoe', :B2 => "X" 
+
+            # Act
+            get '/tictactoe'
+
+            # Assert
+            expect(last_response.body).to include(losing_message)
+        end
+
+        it "doesn't show a message when the game is active" do
+            # Arrange
+            losing_message = "UNLUCKY!!! Our very advanced AI outsmarted you!!"
+            post '/tictactoe', :B1 => "X" 
+
+            # Act
+            get '/tictactoe'
+
+            # Assert
+            expect(last_response.body).to_not include(losing_message)
+        end
+
+        it "shows a message saying board is drawn when there are no more moves" do
+            # Arrange
+            drawn_message = "Game is drawn, there are no more moves!"
+            post '/tictactoe', :B1 => "X" 
+            post '/tictactoe', :B0 => "X" 
+            post '/tictactoe', :A1 => "X" 
+            post '/tictactoe', :C2 => "X" 
+            post '/tictactoe', :A2 => "X" 
+
+            # Act
+            get '/tictactoe'
+
+            # Assert
+            expect(last_response.body).to include(drawn_message)
+        end
     end
 
 end
