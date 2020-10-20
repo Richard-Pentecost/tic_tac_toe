@@ -8,6 +8,10 @@ require_relative 'lib/board_checker'
 class TicTacToeWeb < Sinatra::Base
   enable :sessions
 
+  get '/' do
+    redirect "/tictactoe"
+  end
+  
   get '/tictactoe' do
     @grid_values = { "A0" => session[:A0], "A1" => session[:A1], "A2" => session[:A2],
                     "B0" => session[:B0], "B1" => session[:B1], "B2" => session[:B2],
