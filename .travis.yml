@@ -1,4 +1,6 @@
 language: ruby
 script: bundle exec rspec
 rvm:
-  - 2.6.3
+- 2.6.3
+dep:
+  secure: D39sDp9GB5uklopvAVL+YrrKykmt4ix0nyyRtgQpePSvrmhs2RbI7/uxtAWIucSoAZyOoF+jA1/KTBFx1jFc5udr7FLTc0+zQVFnRBQvrQB8bK3AVoCMHKEOrsm127wQQEhAA+6JyaYcYcX4+WV9S4pAYyl0S/TdJIsVRuu7CbPrrDRexLvzmrI3WDqpC0dn1FcyvkexIGdK4w+D6JQtL9TkC3f+qvQMMQdmgQxd8/POVjQq7V83CPuhRxff+1X0GCtyqeq7SBuSa5gG+Ks4Y72tkoYdXDq0wAl1aNuQ9yvyLVkN/8LL7GCnpPmr3x3n+BGobwY8c79isW2FWqN9/ZajHgN2/ZCL+ibv650GpszJws3L5z+ovbAvkU+TL6uAGsznjsfUP9F06EylCaXxtvQGnVE851fiXEzwb89DFVrjEYrMbg6ORe1b1PxhAKge6mzbam6EAiNYudzNyuuXseR52J55NwyOl2bjEHI7zPF6c+NsF0W66eyVJ/CXd4Td+3t+iH9fVE+8z/I+CMt4hpKgPjyZGc6MDxJ9oXfyGe/lJn9M5fu0GCBcG8osRlvAvovR/z/IoIcj3JqdNWZxF+zKx5krNheNaoM8qTC14nywo8rhtEayWdHFmxA1ufy35lQlGADHbNrhcy3sHE3COgM3+YVw7oecO+8qzzlAaoY=
