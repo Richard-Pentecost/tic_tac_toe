@@ -1,9 +1,9 @@
-require_relative '../../tic_tac_toe.rb'
-require_relative '../../board.rb'
-require_relative '../../game_controller.rb'
-require_relative '../../computer.rb'
-require_relative '../../minimax_computer.rb'
-require_relative '../../board_checker.rb'
+require 'tic_tac_toe'
+require 'board'
+require 'game_controller'
+require 'computer'
+require 'minimax_computer'
+require 'board_checker'
 
 describe 'Tic Tac Toe Game' do
 

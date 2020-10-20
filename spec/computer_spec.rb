@@ -1,4 +1,4 @@
-require_relative "../computer.rb"
+require "computer"
 
 describe Computer do
     before(:each) do

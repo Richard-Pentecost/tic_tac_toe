@@ -1,13 +1,13 @@
-require_relative '../minimax_computer.rb'
-require_relative '../board.rb'
-require_relative '../board_checker.rb'
+require 'minimax_computer'
+require 'board'
+require 'board_checker'
 
 describe MinimaxComputer do
 
     context 'Minimax Computer initialisation' do
         it 'initializes with a board_checker' do
-          minimax_computer = MinimaxComputer.new("board_checker")
-          expect(minimax_computer.board_checker).to eq('board_checker')
+            minimax_computer = MinimaxComputer.new("board_checker")
+            expect(minimax_computer.board_checker).to eq('board_checker')
         end
     end
 

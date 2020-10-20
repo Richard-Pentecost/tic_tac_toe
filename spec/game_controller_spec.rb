@@ -1,4 +1,4 @@
-require_relative "../game_controller.rb"
+require "game_controller"
 
 describe GameController do
     context "initialize GameController" do

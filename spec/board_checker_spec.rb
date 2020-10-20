@@ -1,4 +1,4 @@
-require_relative '../board_checker'
+require 'board_checker'
 
 describe BoardChecker do
 
