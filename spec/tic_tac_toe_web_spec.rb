@@ -162,6 +162,20 @@ describe TicTacToeWeb do
             # Assert
             expect(last_response.body).to include(drawn_message)
         end
+
+        it 'locks the board when player has lost' do
+            # Arrange
+            post '/tictactoe', :B1 => "X" 
+            post '/tictactoe', :C2 => "X" 
+            post '/tictactoe', :B2 => "X" 
+
+            # Act
+            post '/tictactoe', :A2 => "X"
+            get '/tictactoe'
+
+            # Assert
+            expect(last_response.body).to have_tag('input', :with => { :type => "submit", :value => nil, :id => "A2" })
+        end
     end
 
 end

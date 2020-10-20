@@ -23,7 +23,9 @@ class TicTacToeWeb < Sinatra::Base
       session[:game_over] = false
       reset_message
     end
-    play_round
+
+    play_round if not session[:game_over]
+
     update_ui_board
     redirect "/tictactoe"
   end
