@@ -1,22 +1,31 @@
-<div class="grid-container">
-
-  <% ["0", "1", "2"].each do |row| %>
-    <% ["A","B","C"].each do |col| %>
-      <div class="grid-item">
-        <form action"/ttt" method="post">
-          <input type="hidden" name="<%= col + row %>" value="X">
-          <input type="submit" value="<%= @grid_values[(col + row).to_s] %>" class="ttt-button" id="<%= col + row %>" >
-        </form>
-      </div>
+<div class='page'>
+  <header class="heading-container">
+    <h1 class="heading">Tic Tac Toe</h1>
+  </header>
+  <div class="grid-container">
+    <% ["0", "1", "2"].each do |row| %>
+      <% ["A","B","C"].each do |col| %>
+        <div class="grid-item">
+          <form action"/ttt" method="post" class="ttt-button-form">
+            <input type="hidden" name="<%= col + row %>" value="X">
+            <input 
+              type="submit"
+              value="<%= @grid_values[(col + row).to_s] %>" 
+              class="ttt-button" 
+              id="<%= col + row %>" 
+            >
+          </form>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
-</div>
-<div>
-  <form action"/ttt" method="post">
-    <input type="hidden" name="reset" value="reset">
-    <input type="submit" value="RESET BOARD">
-  </form>
-</div>
-<div>
-  <h1><%= @message %></h1>
+  </div>
+  <div class='reset-button-container'>
+    <form action"/ttt" method="post">
+      <input type="hidden" name="reset" value="reset">
+      <input type="submit" value="RESET BOARD" class='reset-button'>
+    </form>
+  </div>
+  <div>
+    <h1><%= @message %></h1>
+  </div>
 </div>
