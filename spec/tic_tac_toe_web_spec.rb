@@ -96,11 +96,12 @@ describe TicTacToeWeb do
 
             # Act
             post '/tictactoe', :reset => 'reset'
+            get '/tictactoe'
 
             # Asset
             expect(session[:game_controller].board.board).to eq([['_','_','_'],['_','_','_'],['_','_','_']])
-            expect(last_response.body).to have_tag('input', :with => { :type => "submit", :value => '', :id => "B1" })
-            expect(last_response.body).to have_tag('input', :with => { :type => "submit", :value => '', :id => "A0" })
+            expect(last_response.body).to have_tag('input', :with => { :type => "submit", :value => nil, :id => "B1" })
+            expect(last_response.body).to have_tag('input', :with => { :type => "submit", :value => nil, :id => "A0" })
         end
     end
 

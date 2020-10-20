@@ -58,7 +58,7 @@ class TicTacToeWeb < Sinatra::Base
     
     board = session[:game_controller].board.board.flatten
     board.each_with_index do |position, index|
-      position == "_" ? position = '' : position = position
+      position == "_" ? position = nil : position = position
       session[grid_positions[index]] = position 
     end
   end
