@@ -42,12 +42,13 @@
   background-color: white;
   border: none
 }
-.ttt-button:hover {
-  background-color: rgba(228, 220, 220, 0.8)
-}
 
 .ttt-button:disabled {
   background-color: white;
+}
+
+.ttt-button:hover {
+  background-color: rgba(228, 220, 220, 0.8)
 }
 
 .reset-button-container {
