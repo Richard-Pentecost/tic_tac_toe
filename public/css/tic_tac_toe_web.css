@@ -46,6 +46,10 @@
   background-color: rgba(228, 220, 220, 0.8)
 }
 
+.ttt-button:disabled {
+  background-color: white;
+}
+
 .reset-button-container {
   margin-top: 20px;
 }

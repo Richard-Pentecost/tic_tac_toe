@@ -17,7 +17,12 @@ class TicTacToeWeb < Sinatra::Base
                     "B0" => session[:B0], "B1" => session[:B1], "B2" => session[:B2],
                     "C0" => session[:C0], "C1" => session[:C1], "C2" => session[:C2],}
     @message = session[:message]
-    # @game_over = session[:game_over]
+    @game_over = session[:game_over]
+    if @game_over == nil
+      @game_over = false
+    end
+
+
     erb :tictactoe
   end
 
@@ -30,7 +35,6 @@ class TicTacToeWeb < Sinatra::Base
     end
 
     play_round if not session[:game_over]
-    
 
     update_ui_board
     redirect "/tictactoe"
