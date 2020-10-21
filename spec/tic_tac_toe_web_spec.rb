@@ -118,6 +118,26 @@ describe TicTacToeWeb do
             # Asset
             expect(last_response.body).to_not include(losing_message)
         end
+
+        it 'enables the grid buttons' do
+            # Arrange
+            post '/tictactoe', :B1 => "X" 
+            post '/tictactoe', :C2 => "X" 
+            post '/tictactoe', :B2 => "X" 
+            post '/tictactoe', :A2 => "X"
+
+            # Act
+            post '/tictactoe', :reset => 'reset'
+            get '/tictactoe'
+
+            # Assert
+            for row in 0..2
+                for col in ["A", "B", "C"]
+                    check_cell_enabled(last_response.body, col, row)
+                    #expect(last_response.body).to_not have_tag('input', :with => { :type => "submit", :disabled => 'disabled' , :id => "#{col}#{row}" })
+                end
+            end
+        end
     end
 
     context "Game has finished" do
@@ -176,6 +196,28 @@ describe TicTacToeWeb do
             # Assert
             expect(last_response.body).to have_tag('input', :with => { :type => "submit", :value => nil, :id => "A2" })
         end
+
+        it 'it disables the buttons' do
+            # Arrange
+            post '/tictactoe', :B1 => "X" 
+            post '/tictactoe', :C2 => "X" 
+            post '/tictactoe', :B2 => "X" 
+
+            # Act
+            post '/tictactoe', :A2 => "X"
+            get '/tictactoe'
+
+            # Assert
+            for row in 0..2
+                for col in ["A", "B", "C"]
+                    expect(last_response.body).to have_tag('input', :with => { :type => "submit", :disabled => 'disabled' , :id => "#{col}#{row}" })
+                end
+            end
+        end
     end
 
+end
+
+def check_cell_enabled(response_body, col, row)
+    expect(response_body).to_not have_tag('input', :with => { :type => "submit", :disabled => 'disabled' , :id => "#{col}#{row}" })
 end

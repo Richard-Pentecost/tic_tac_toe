@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require_relative 'lib/game_controller'
 require_relative 'lib/board'
 require_relative 'lib/tic_tac_toe'

@@ -13,7 +13,7 @@
               value="<%= @grid_values[(col + row).to_s] %>" 
               class="ttt-button" 
               id="<%= col + row %>" 
-              <%= @game_over ? "disabled" : "enabled" %>
+              <%= @game_over ? "disabled" : "" %>
             >
           </form>
         </div>

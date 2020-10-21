@@ -6,5 +6,6 @@ Our web app can be found [here](https://tic-tac-toe-rpcg.herokuapp.com).
 
 ## Command Line App
 Our command line app can be run with an easy opponent by running the app.rb file, or the minimax algorithm by running minimax_app.rb.
+To run in command line type `./minimax_app.rb` or `./app.rb`.
 
 To set up the environment, clone this directory and run `bundle install`.
