@@ -3,13 +3,27 @@ require "erb"
 require_relative 'lib/game_controller'
 require_relative 'lib/board'
 require_relative 'lib/minimax_computer'
+require_relative 'lib/computer'
 require_relative 'lib/board_checker'
 
 class TicTacToeWeb < Sinatra::Base
   enable :sessions
 
   get '/' do
-    redirect "/tictactoe"
+    erb :landing_page
+  end
+
+  post '/' do 
+    session[:game_mode] = 'hard' if params[:hard] == "Hard Game" 
+    session[:game_mode] = 'easy' if params[:easy] == 'Easy Game'
+    session[:game_controller] = nil
+
+    game_controller = new_game_setup
+      session[:game_controller] = game_controller
+      session[:game_over] = false
+      reset_message
+
+    redirect '/tictactoe'
   end
   
   get '/tictactoe' do
@@ -27,6 +41,10 @@ class TicTacToeWeb < Sinatra::Base
   end
 
   post '/tictactoe' do
+    if params[:home] == 'Go to Home'
+      redirect '/'
+    end
+
     if session[:game_controller] == nil or params[:reset] == 'reset'
       game_controller = new_game_setup
       session[:game_controller] = game_controller
@@ -45,7 +63,8 @@ class TicTacToeWeb < Sinatra::Base
   def new_game_setup
     board = Board.new
     board_checker = BoardChecker.new
-    computer = MinimaxComputer.new(board_checker)
+    computer = MinimaxComputer.new(board_checker) 
+    computer = Computer.new if session[:game_mode] == 'easy'
     game_controller = GameController.new(board, computer)
     game_controller.add_board_checker(board_checker)
     return game_controller

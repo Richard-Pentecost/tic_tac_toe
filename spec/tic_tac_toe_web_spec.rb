@@ -4,6 +4,74 @@ describe TicTacToeWeb do
 
     include Rack::Test::Methods
     let!(:app) { TicTacToeWeb }
+
+    context 'goes to landing page' do
+        it 'returns a 200 status code' do
+            # Act
+            get '/'
+
+            # Assert
+            expect(last_response.status).to eq 200
+        end
+
+        it 'has a button to load a hard game and an easy game' do
+            # Act
+            get '/'
+
+            # Assert
+            expect(last_response.body).to have_tag('input', :with => { :type => "submit", :name => "hard", :value => 'Hard Game' })
+            expect(last_response.body).to have_tag('input', :with => { :type => "submit", :name => "easy", :value => 'Easy Game' })
+        end
+    end
+
+    context 'game button clicked' do
+        it "redirects to the '/tictactoe' route, when hard game button clicked" do
+            # Arrange
+            get '/'
+
+            # Act
+            post '/', :hard => 'Hard Game'
+
+            expect(last_response).to be_redirect
+            expect(last_response.location).to include '/tictactoe'
+        end
+
+        it 'loads the minimax computer into the game, when hard button is clicked' do
+            # Arrange
+            get '/'
+
+            # Act
+            post '/', :hard => 'Hard Game'
+            post '/tictactoe', :A0 => 'X'
+
+            # Assert
+            expect(session[:game_controller].computer.class).to be(MinimaxComputer)
+        end
+
+        it "redirects to the '/tictactoe' route, when easy game button clicked" do
+            # Arrange
+            get '/'
+
+            # Act
+            post '/', :easy => 'Easy Game'
+
+            expect(last_response).to be_redirect
+            expect(last_response.location).to include '/tictactoe'
+        end
+
+        it 'loads the minimax computer into the game, when easy button is clicked' do
+            # Arrange
+            get '/'
+
+            # Act
+            post '/', :easy => 'Easy Game'
+            post '/tictactoe', :A0 => 'X'
+
+            # Assert
+            expect(session[:game_controller].computer.class).to be(Computer)
+        end
+    end
+
     context "goes to the page for the first time" do
         it "returns a 200 status code" do
             # Act
@@ -23,6 +91,20 @@ describe TicTacToeWeb do
                     expect(last_response.body).to have_tag('input', :with => { :type => "hidden", :name => "#{col}#{row}" })
                 end
             end
+        end
+    end
+
+    context "user clicks the home button from '/tictactoe' " do
+        it 'returns to the home page' do
+            # Arrange
+            get '/tictactoe'
+
+            # Act
+            post '/tictactoe', :home => 'Go to Home'
+
+            #Assert
+            expect(last_response).to be_redirect
+            expect(last_response.location).to_not include '/tictactoe'
         end
     end
 
