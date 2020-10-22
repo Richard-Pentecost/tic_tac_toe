@@ -27,8 +27,16 @@ html {
 /* ************************************* */
 /* CSS corresponding to landing_page.erb */
 /* ************************************* */
-.landing-page-container {
+.instruction-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
+.welcome-message {
+  font-size: 25px;
+  font-weight: 500;
+  margin: 0;
 }
 
 .game-button-container {
