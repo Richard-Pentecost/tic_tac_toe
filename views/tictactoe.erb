@@ -1,7 +1,4 @@
 <div class='page'>
-  <header class="heading-container">
-    <h1 class="heading">Tic Tac Toe</h1>
-  </header>
   <div class="grid-container">
     <% ["0", "1", "2"].each do |row| %>
       <% ["A","B","C"].each do |col| %>
@@ -23,10 +20,10 @@
   <div class='reset-button-container'>
     <form action"/ttt" method="post">
       <input type="hidden" name="reset" value="reset">
-      <input type="submit" value="RESET BOARD" class='reset-button'>
+      <input type="submit" value="RESET BOARD" class='general-button reset-button'>
     </form>
     <form action"/ttt" method="post">
-      <input type="submit" name='home' value="Go to Home" class='home-button'>
+      <input type="submit" name='home' value="Go to Home" class='general-button home-button'>
     </form>
   </div>
   <div>

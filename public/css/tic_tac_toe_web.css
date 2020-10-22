@@ -1,18 +1,56 @@
-.page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-family: Arial;
+/* ************************************* */
+/* CSS corresponding to layout.erb       */
+/* ************************************* */
+html {
   font-family: Arial;
 }
 
 .heading-container {
-
+  display: flex;
+  justify-content: center;
 }
 
 .heading {
   color: rgba(31, 68, 231, 0.8);
-  /* color: red; */
+}
+
+/* ************************************* */
+/* CSS corresponding to general classes  */
+/* ************************************* */
+.general-button {
+  background-color: rgba(31, 68, 231, 0.8);
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+/* ************************************* */
+/* CSS corresponding to landing_page.erb */
+/* ************************************* */
+.landing-page-container {
+
+}
+
+.game-button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.mode-button {
+  font-size: 50px;
+  font-weight: 600;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+/* ************************************* */
+/* CSS corresponding to tictactoe.erb    */
+/* ************************************* */
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .grid-container {
@@ -42,7 +80,8 @@
   height: 100%;
   font-size: 50px;
   background-color: white;
-  border: none
+  border: none;
+  cursor: pointer;
 }
 
 .ttt-button:hover {
@@ -55,6 +94,15 @@
 
 .reset-button-container {
   margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home-button {
+  font-size: 14px;
+  padding: 5px 10px;
+  border-radius: 5px;
 }
 
 .reset-button {
@@ -62,7 +110,5 @@
   padding: 15px;
   font-weight: 600;
   border-radius: 10px;
-  background-color: rgba(31, 68, 231, 0.8);
-  color: white;
-  border: none;
+  margin-bottom: 10px;
 }
