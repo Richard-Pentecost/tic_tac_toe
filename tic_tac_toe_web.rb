@@ -17,11 +17,8 @@ class TicTacToeWeb < Sinatra::Base
     session[:game_mode] = 'hard' if params[:hard] == "Hard Game" 
     session[:game_mode] = 'easy' if params[:easy] == 'Easy Game'
     session[:game_controller] = nil
-
-    game_controller = new_game_setup
-      session[:game_controller] = game_controller
-      session[:game_over] = false
-      reset_message
+    new_game_setup
+    update_ui_board
 
     redirect '/tictactoe'
   end
@@ -46,10 +43,7 @@ class TicTacToeWeb < Sinatra::Base
     end
 
     if session[:game_controller] == nil or params[:reset] == 'reset'
-      game_controller = new_game_setup
-      session[:game_controller] = game_controller
-      session[:game_over] = false
-      reset_message
+      new_game_setup
     end
 
     play_round if not session[:game_over]
@@ -61,6 +55,13 @@ class TicTacToeWeb < Sinatra::Base
   private
 
   def new_game_setup
+    game_controller = new_game_controller_setup
+    session[:game_controller] = game_controller
+    session[:game_over] = false
+    reset_message
+  end
+  
+  def new_game_controller_setup
     board = Board.new
     board_checker = BoardChecker.new
     computer = MinimaxComputer.new(board_checker) 
